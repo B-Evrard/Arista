@@ -11,6 +11,11 @@
         <attribute name="libel" attributeType="String" minValueString="1" maxValueString="30"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Excercise" inverseName="intensity" inverseEntity="Excercise"/>
     </entity>
+    <entity name="Sleep" representedClassName=".Sleep" syncable="YES" codeGenerationType="category">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sleeps" inverseEntity="User"/>
+    </entity>
     <entity name="TypeExercise" representedClassName=".TypeExercice" syncable="YES" codeGenerationType="category">
         <attribute name="libel" attributeType="String" minValueString="1" maxValueString="30"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Excercise" inverseName="typeExercise" inverseEntity="Excercise"/>
@@ -19,5 +24,6 @@
         <attribute name="name" attributeType="String" minValueString="1" maxValueString="45"/>
         <attribute name="password" attributeType="String" minValueString="12" maxValueString="15"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Excercise" inverseName="user" inverseEntity="Excercise"/>
+        <relationship name="sleeps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sleep" inverseName="user" inverseEntity="Sleep"/>
     </entity>
 </model>

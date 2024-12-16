@@ -27,6 +27,7 @@
 		FE1013C02D10700D002FEFDD /* Excercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1013BF2D10700D002FEFDD /* Excercise.swift */; };
 		FE1013C22D107960002FEFDD /* Intensity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1013C12D107960002FEFDD /* Intensity.swift */; };
 		FE1013C42D107A9B002FEFDD /* TypeExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1013C32D107A9B002FEFDD /* TypeExercise.swift */; };
+		FE1013C62D107DAC002FEFDD /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1013C52D107DAC002FEFDD /* Sleep.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		FE1013BF2D10700D002FEFDD /* Excercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Excercise.swift; path = Arista/Excercise.swift; sourceTree = SOURCE_ROOT; };
 		FE1013C12D107960002FEFDD /* Intensity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Intensity.swift; path = Arista/Intensity.swift; sourceTree = SOURCE_ROOT; };
 		FE1013C32D107A9B002FEFDD /* TypeExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TypeExercise.swift; path = Arista/TypeExercise.swift; sourceTree = SOURCE_ROOT; };
+		FE1013C52D107DAC002FEFDD /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sleep.swift; path = Arista/Sleep.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				FE1013C12D107960002FEFDD /* Intensity.swift */,
 				FE1013C32D107A9B002FEFDD /* TypeExercise.swift */,
 				FE1013BF2D10700D002FEFDD /* Excercise.swift */,
+				FE1013C52D107DAC002FEFDD /* Sleep.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
 				FE1013C02D10700D002FEFDD /* Excercise.swift in Sources */,
+				FE1013C62D107DAC002FEFDD /* Sleep.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
