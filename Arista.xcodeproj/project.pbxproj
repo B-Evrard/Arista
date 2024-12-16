@@ -25,6 +25,8 @@
 		53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */; };
 		FE1013BE2D1069BD002FEFDD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1013BD2D1069BD002FEFDD /* User.swift */; };
 		FE1013C02D10700D002FEFDD /* Excercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1013BF2D10700D002FEFDD /* Excercise.swift */; };
+		FE1013C22D107960002FEFDD /* Intensity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1013C12D107960002FEFDD /* Intensity.swift */; };
+		FE1013C42D107A9B002FEFDD /* TypeExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1013C32D107A9B002FEFDD /* TypeExercise.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModel.swift; sourceTree = "<group>"; };
 		FE1013BD2D1069BD002FEFDD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Arista/User.swift; sourceTree = SOURCE_ROOT; };
 		FE1013BF2D10700D002FEFDD /* Excercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Excercise.swift; path = Arista/Excercise.swift; sourceTree = SOURCE_ROOT; };
+		FE1013C12D107960002FEFDD /* Intensity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Intensity.swift; path = Arista/Intensity.swift; sourceTree = SOURCE_ROOT; };
+		FE1013C32D107A9B002FEFDD /* TypeExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TypeExercise.swift; path = Arista/TypeExercise.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				FE1013BD2D1069BD002FEFDD /* User.swift */,
+				FE1013C12D107960002FEFDD /* Intensity.swift */,
+				FE1013C32D107A9B002FEFDD /* TypeExercise.swift */,
 				FE1013BF2D10700D002FEFDD /* Excercise.swift */,
 			);
 			path = Models;
@@ -248,7 +254,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					53E5872C2B235E8F00E4EF99 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -319,6 +325,8 @@
 				53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */,
 				53E587672B23600C00E4EF99 /* SleepHistoryView.swift in Sources */,
 				53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */,
+				FE1013C42D107A9B002FEFDD /* TypeExercise.swift in Sources */,
+				FE1013C22D107960002FEFDD /* Intensity.swift in Sources */,
 				53E587652B23600400E4EF99 /* ExerciseListView.swift in Sources */,
 				53E5876B2B23648500E4EF99 /* ExerciseListViewModel.swift in Sources */,
 				53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */,
@@ -541,7 +549,6 @@
 		53E5875A2B235E9000E4EF99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -560,7 +567,6 @@
 		53E5875B2B235E9000E4EF99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -579,7 +585,6 @@
 		53E5875D2B235E9000E4EF99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -596,7 +601,6 @@
 		53E5875E2B235E9000E4EF99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

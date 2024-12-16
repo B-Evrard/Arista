@@ -3,10 +3,21 @@
     <entity name="Excercise" representedClassName=".Excercise" syncable="YES" codeGenerationType="category">
         <attribute name="endDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="intensity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Intensity" inverseName="exercises" inverseEntity="Intensity"/>
+        <relationship name="typeExercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TypeExercise" inverseName="exercises" inverseEntity="TypeExercise"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="exercises" inverseEntity="User"/>
+    </entity>
+    <entity name="Intensity" representedClassName=".Intensity" syncable="YES" codeGenerationType="category">
+        <attribute name="libel" attributeType="String" minValueString="1" maxValueString="30"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Excercise" inverseName="intensity" inverseEntity="Excercise"/>
+    </entity>
+    <entity name="TypeExercise" representedClassName=".TypeExercice" syncable="YES" codeGenerationType="category">
+        <attribute name="libel" attributeType="String" minValueString="1" maxValueString="30"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Excercise" inverseName="typeExercise" inverseEntity="Excercise"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="category">
         <attribute name="name" attributeType="String" minValueString="1" maxValueString="45"/>
         <attribute name="password" attributeType="String" minValueString="12" maxValueString="15"/>
-        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="exercises" inverseEntity="User"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Excercise" inverseName="user" inverseEntity="Excercise"/>
     </entity>
 </model>
