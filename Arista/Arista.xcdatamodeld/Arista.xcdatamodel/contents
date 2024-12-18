@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24C101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Excercise" representedClassName=".Excercise" syncable="YES" codeGenerationType="category">
+    <entity name="Exercise" representedClassName=".Excercise" syncable="YES" codeGenerationType="class">
         <attribute name="endDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="intensity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Intensity" inverseName="exercises" inverseEntity="Intensity"/>
         <relationship name="typeExercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TypeExercise" inverseName="exercises" inverseEntity="TypeExercise"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="exercises" inverseEntity="User"/>
     </entity>
-    <entity name="Intensity" representedClassName=".Intensity" syncable="YES" codeGenerationType="category">
+    <entity name="Intensity" representedClassName=".Intensity" syncable="YES" codeGenerationType="class">
         <attribute name="libel" attributeType="String" minValueString="1" maxValueString="30"/>
-        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Excercise" inverseName="intensity" inverseEntity="Excercise"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="intensity" inverseEntity="Exercise"/>
     </entity>
-    <entity name="Sleep" representedClassName=".Sleep" syncable="YES" codeGenerationType="category">
+    <entity name="Sleep" representedClassName=".Sleep" syncable="YES" codeGenerationType="class">
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sleeps" inverseEntity="User"/>
     </entity>
-    <entity name="TypeExercise" representedClassName=".TypeExercice" syncable="YES" codeGenerationType="category">
+    <entity name="TypeExercise" representedClassName=".TypeExercice" syncable="YES" codeGenerationType="class">
         <attribute name="libel" attributeType="String" minValueString="1" maxValueString="30"/>
-        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Excercise" inverseName="typeExercise" inverseEntity="Excercise"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="typeExercise" inverseEntity="Exercise"/>
     </entity>
-    <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="category">
+    <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" minValueString="1" maxValueString="45"/>
         <attribute name="password" attributeType="String" minValueString="12" maxValueString="15"/>
-        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Excercise" inverseName="user" inverseEntity="Excercise"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="user" inverseEntity="Exercise"/>
         <relationship name="sleeps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sleep" inverseName="user" inverseEntity="Sleep"/>
     </entity>
 </model>
