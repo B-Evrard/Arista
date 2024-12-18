@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24C101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Exercise" representedClassName=".Excercise" syncable="YES" codeGenerationType="class">
+    <entity name="Exercise" representedClassName=".Exercise" syncable="YES" codeGenerationType="class">
         <attribute name="endDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="intensity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Intensity" inverseName="exercises" inverseEntity="Intensity"/>

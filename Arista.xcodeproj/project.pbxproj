@@ -25,6 +25,7 @@
 		53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */; };
 		FEB6658E2D12C3FC00A5AC99 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB6658D2D12C3FC00A5AC99 /* UserRepository.swift */; };
 		FEB665902D12D10D00A5AC99 /* SleepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB6658F2D12D10D00A5AC99 /* SleepRepository.swift */; };
+		FEB665B42D131BFA00A5AC99 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB665B32D131BFA00A5AC99 /* ExerciseRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModel.swift; sourceTree = "<group>"; };
 		FEB6658D2D12C3FC00A5AC99 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserRepository.swift; path = Arista/UserRepository.swift; sourceTree = SOURCE_ROOT; };
 		FEB6658F2D12D10D00A5AC99 /* SleepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SleepRepository.swift; path = Arista/SleepRepository.swift; sourceTree = SOURCE_ROOT; };
+		FEB665B32D131BFA00A5AC99 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseRepository.swift; path = Arista/ExerciseRepository.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			children = (
 				FEB6658D2D12C3FC00A5AC99 /* UserRepository.swift */,
 				FEB6658F2D12D10D00A5AC99 /* SleepRepository.swift */,
+				FEB665B32D131BFA00A5AC99 /* ExerciseRepository.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
 				FEB665902D12D10D00A5AC99 /* SleepRepository.swift in Sources */,
+				FEB665B42D131BFA00A5AC99 /* ExerciseRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
