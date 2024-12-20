@@ -23,14 +23,13 @@ struct ExerciseRepository {
     }
    
    
-    func addExercise(typeExercise: TypeExercice, intensity: Intensity, startDate: Date, EndDate: Date) throws {
+    func addExercise(type: String, intensity: String, startDate: Date, EndDate: Date) throws {
         let newExercise = Exercise(context: viewContext)
-        
-        newExercise.typeExercise = typeExercise
+        newExercise.type = type
         newExercise.intensity = intensity
         newExercise.startDate = startDate
         newExercise.endDate = EndDate
-        
         try viewContext.save()
     }
 }
+
