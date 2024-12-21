@@ -13,7 +13,8 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sleeps" inverseEntity="User"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="class">
-        <attribute name="name" attributeType="String" minValueString="1" maxValueString="45"/>
+        <attribute name="firstName" attributeType="String" minValueString="1" maxValueString="45"/>
+        <attribute name="lastName" attributeType="String" minValueString="1" maxValueString="45"/>
         <attribute name="password" attributeType="String" minValueString="12" maxValueString="15"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="user" inverseEntity="Exercise"/>
         <relationship name="sleeps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sleep" inverseName="user" inverseEntity="Sleep"/>
