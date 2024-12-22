@@ -16,8 +16,21 @@ struct AddExerciseView: View {
             VStack {
                 Form {
                     TextField("Catégorie", text: $viewModel.category)
-                    TextField("Heure de démarrage", text: $viewModel.startTime)
-                    TextField("Durée (en minutes)", text: $viewModel.duration)
+                    DatePicker("Heure de démarrage",
+                               selection:  $viewModel.startTime,
+                               displayedComponents: [.date, .hourAndMinute]
+                    )
+                    .datePickerStyle(DefaultDatePickerStyle())
+                    .labelsHidden()
+                    
+                    
+                    DatePicker("Heure de fin",
+                               selection:  $viewModel.endTime,
+                               displayedComponents: [.date, .hourAndMinute]
+                    )
+                    .datePickerStyle(DefaultDatePickerStyle())
+                    .labelsHidden()
+                    
                     TextField("Intensité (0 à 10)", text: $viewModel.intensity)
                 }.formStyle(.grouped)
                 Spacer()
