@@ -11,13 +11,14 @@ struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
 
         var body: some View {
-            List(viewModel.sleepSessions) { session in
+            List($viewModel.sleepSessions) { $session in
                 HStack {
                     QualityIndicator(quality: session.quality)
                         .padding()
                     VStack(alignment: .leading) {
-                        Text("Début : \(session.startDate.formatted())")
-                        Text("Durée : \(session.duration/60) heures")
+                        Text("Début : \(session.startDate?.formatted() ?? "")")
+                        
+                        Text("Fin : \(session.endDate?.formatted() ?? "")")
                     }
                 }
             }
@@ -26,16 +27,16 @@ struct SleepHistoryView: View {
 }
 
 struct QualityIndicator: View {
-    let quality: Int
+    let quality: Int16
 
     var body: some View {
         ZStack {
             Circle()
-                .stroke(qualityColor(quality), lineWidth: 5)
-                .foregroundColor(qualityColor(quality))
+                .stroke(qualityColor(Int(quality)), lineWidth: 5)
+                .foregroundColor(qualityColor(Int(quality)))
                 .frame(width: 30, height: 30)
             Text("\(quality)")
-                .foregroundColor(qualityColor(quality))
+                .foregroundColor(qualityColor(Int(quality)))
         }
     }
 
