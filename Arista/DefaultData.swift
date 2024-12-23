@@ -30,16 +30,16 @@ struct DefaultData {
                 
                 var sleepSessions: [(start: Date, end: Date)] = []
                 
-                let startHourRange: TimeInterval = 20 * 60 * 60 // 20:00
-                let endHourRange: TimeInterval = 22.5 * 60 * 60 // 22:30
+                let startHourRange: TimeInterval = 20 * 60 * 60
+                let endHourRange: TimeInterval = 22.5 * 60 * 60
 
                 
-                let minSleepDuration: TimeInterval = 5 * 60 * 60 // 5 heures
-                let maxSleepDuration: TimeInterval = 8 * 60 * 60 // 8 heures
+                let minSleepDuration: TimeInterval = 5 * 60 * 60
+                let maxSleepDuration: TimeInterval = 8 * 60 * 60
 
                 for i in 1...5 {
                     
-                    let dayOffset = TimeInterval(-i * 24 * 60 * 60) // i jours dans le passé
+                    let dayOffset = TimeInterval(-i * 24 * 60 * 60)
                     let baseDate = Calendar.current.startOfDay(for: Date()).addingTimeInterval(dayOffset)
 
                     let randomStartTime = TimeInterval.random(in: startHourRange...endHourRange)
