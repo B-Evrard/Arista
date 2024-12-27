@@ -15,23 +15,78 @@ struct AddExerciseView: View {
         NavigationView {
             VStack {
                 Form {
-                    TextField("Catégorie", text: $viewModel.category)
-                    DatePicker("Heure de démarrage",
-                               selection:  $viewModel.startTime,
-                               displayedComponents: [.date, .hourAndMinute]
+                    Picker("Catégorie", selection: Binding(
+                        get: { viewModel.type },
+                        set: { newValue in viewModel.type = newValue }
+                    )) {
+                        ForEach(TypeExercise.allCases, id: \.self) { type in
+                            Text(type.rawValue.capitalized).tag(type.rawValue)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    .overlay(
+                        
+                        Group {
+                            if viewModel.type.isEmpty {
+                                HStack {
+                                    Spacer()
+                                    Text("Sélectionner")
+                                        .foregroundColor(.gray)
+                                        .allowsHitTesting(false)
+                                }
+                                .padding(.trailing, 20)
+                            }
+                        }
                     )
-                    .datePickerStyle(DefaultDatePickerStyle())
-                    .labelsHidden()
+                    
+                    HStack {
+                        Text("Début")
+                        Spacer()
+                        DatePicker("Début",
+                                   selection:  $viewModel.startTime,
+                                   displayedComponents: [.date, .hourAndMinute]
+                        )
+                        .datePickerStyle(DefaultDatePickerStyle())
+                        .labelsHidden()
+                    }
+                    
+                    HStack {
+                        Text("Fin")
+                        Spacer()
+                        DatePicker("Fin",
+                                   selection:  $viewModel.endTime,
+                                   displayedComponents: [.date, .hourAndMinute]
+                        )
+                        .datePickerStyle(DefaultDatePickerStyle())
+                        .labelsHidden()
+                    }
+                    
+                    VStack {
+                        Text("Intensité")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Slider(value: $viewModel.intensity, in: 1...20, step: 1)
+                                {Text("Intensité")}
+                                minimumValueLabel: { Text("1")}
+                                maximumValueLabel: {Text("20")}
+                        Text(String(format: "%.0f", viewModel.intensity))
+                    }
+                    
+                    if viewModel.showAlert {
+                        VStack {
+                            Text(viewModel.messageAlert)
+                                    .foregroundColor(.white)
+                                    .bold()
+                                    .padding()
+                                    .background(Color.red)
+                                    .cornerRadius(8)
+                                    .shadow(radius: 10)
+                                Spacer()
+                        }
+                        .transition(.move(edge: .top))
+                        .zIndex(1)
+                    }
                     
                     
-                    DatePicker("Heure de fin",
-                               selection:  $viewModel.endTime,
-                               displayedComponents: [.date, .hourAndMinute]
-                    )
-                    .datePickerStyle(DefaultDatePickerStyle())
-                    .labelsHidden()
-                    
-                    TextField("Intensité (0 à 10)", text: $viewModel.intensity)
                 }.formStyle(.grouped)
                 Spacer()
                 Button("Ajouter l'exercice") {
@@ -41,12 +96,13 @@ struct AddExerciseView: View {
                 }.buttonStyle(.borderedProminent)
                     
             }
-            .navigationTitle("Nouvel Exercice ...")
+            .navigationTitle("Nouvel Exercice")
+            
             
         }
     }
 }
 
 #Preview {
-    AddExerciseView(viewModel: AddExerciseViewModel(context: PersistenceController.preview.container.viewContext))
+    AddExerciseView(viewModel: AddExerciseViewModel())
 }

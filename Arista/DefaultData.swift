@@ -29,6 +29,7 @@ struct DefaultData {
             let initialUser = User(context: viewContext)
             initialUser.firstName = "Charlotte"
             initialUser.lastName = "Razoul"
+            initialUser.password = "motdepasseLong"
             
             if try sleepRepository.getSleepSessions().isEmpty {
                 let sleep1 = Sleep(context: viewContext)

@@ -6,28 +6,38 @@
 //
 
 import Foundation
-import CoreData
 
 class AddExerciseViewModel: ObservableObject {
-    @Published var category: String = ""
+    @Published var type: String = ""
     @Published var startTime: Date = Date()
     @Published var endTime: Date = Date()
     @Published var duration: String = ""
-    @Published var intensity: String = ""
+    @Published var intensity = 10.0
     
-    private var viewContext: NSManagedObjectContext
+    @Published var showAlert: Bool = false
+    @Published var messageAlert: String = ""
     
-    init(context: NSManagedObjectContext) {
-        self.viewContext = context
-    }
     
+   
     func addExercise() -> Bool {
         do {
-            try ExerciseRepository(viewContext: viewContext).addExercise(type: category, intensity: intensity, startDate: startTime, EndDate: endTime )
+            self.showAlert = false
+            self.messageAlert = "Selectionner la catégorie"
+            if (type.isEmpty)
+            {
+                self.showAlert = true
+                return false
+            }
+            
+            try ExerciseRepository().addExercise(type: type, intensity: String(intensity), startDate: startTime, EndDate: endTime )
             return true
         } catch  {
+            self.showAlert = true
+            self.messageAlert = error.localizedDescription
             return false
         }
         
     }
+    
+   
 }

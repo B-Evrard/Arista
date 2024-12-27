@@ -7,29 +7,45 @@
 
 import Foundation
 
-import CoreData
-
 class ExerciseListViewModel: ObservableObject {
-    @Published var exercises = [FakeExercise]()
+    @Published var exercises = [Exercise]()
 
-    var viewContext: NSManagedObjectContext
-
-    init(context: NSManagedObjectContext) {
-        self.viewContext = context
+    init() {
         fetchExercises()
     }
 
     private func fetchExercises() {
-        // TODO: fetch data in CoreData and replace dumb value below with appropriate information
-        exercises = [FakeExercise(), FakeExercise(), FakeExercise()]
+       
+        do {
+            let data = ExerciseRepository()
+            exercises = try data.getExercise()
+            
+        } catch {
+            
+        }
+    }
+    
+    func refreshExercises() {
+        fetchExercises()
+    }
+    
+    func iconForCategory(_ category: String) -> String {
+        if let exerciseType = TypeExercise.from(rawValue: category) {
+            return exerciseType.icon
+        } else {
+            return "questionmark"
+        }
+    }
+    
+    func deleteExercise() {
+        do {
+            let data = ExerciseRepository()
+            try data.deleteAllExercises()
+            fetchExercises()
+        } catch {
+            
+        }
     }
 }
 
-struct FakeExercise: Identifiable {
-    var id = UUID()
-    
-    var category: String = "Football"
-    var duration: Int = 120
-    var intensity: Int = 8
-    var date: Date = Date()
-}
+

@@ -6,16 +6,12 @@
 //
 
 import Foundation
-import CoreData
 
 class UserDataViewModel: ObservableObject {
     @Published var firstName: String = ""
     @Published var lastName: String = ""
 
-    private var viewContext: NSManagedObjectContext
-
-    init(context: NSManagedObjectContext) {
-        self.viewContext = context
+    init() {
         fetchUserData()
     }
 

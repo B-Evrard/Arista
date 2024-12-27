@@ -13,20 +13,20 @@ struct ExerciseListView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.exercises) { exercise in
+            List(viewModel.exercises) { exercise  in
                 HStack {
-                    Image(systemName: iconForCategory(exercise.category))
+                    Image(systemName: viewModel.iconForCategory(exercise.type ?? ""))
                     VStack(alignment: .leading) {
-                        Text(exercise.category)
-                            .font(.headline)
-                        Text("Durée: \(exercise.duration) min")
-                            .font(.subheadline)
-                        Text(exercise.date.formatted())
-                            .font(.subheadline)
+                        Text(exercise.type ?? "Inconnu")
+                                                .font(.headline)
+//                                            Text("Durée: \(exercise.duration) min")
+//                                                .font(.subheadline)
+//                                            Text(exercise.date?.formatted() ?? "Date inconnue")
+//                                                .font(.subheadline)
                         
                     }
                     Spacer()
-                    IntensityIndicator(intensity: exercise.intensity)
+                    //IntensityIndicator(intensity: exercise.intensity)
                 }
             }
             .navigationTitle("Exercices")
@@ -35,29 +35,25 @@ struct ExerciseListView: View {
             }) {
                 Image(systemName: "plus")
             })
+            .navigationBarItems(trailing: Button(action: {
+                viewModel.deleteExercise()
+            }) {
+                Image(systemName: "delete.left")
+                    .foregroundColor(.red)
+            })
         }
-        .sheet(isPresented: $showingAddExerciseView) {
-            AddExerciseView(viewModel: AddExerciseViewModel(context: viewModel.viewContext))
+        .sheet(isPresented: $showingAddExerciseView, onDismiss: {
+            viewModel.refreshExercises()})
+        {
+            AddExerciseView(viewModel: AddExerciseViewModel())
         }
+
+        
+        
         
     }
     
-    func iconForCategory(_ category: String) -> String {
-        switch category {
-        case "Football":
-            return "sportscourt"
-        case "Natation":
-            return "waveform.path.ecg"
-        case "Running":
-            return "figure.run"
-        case "Marche":
-            return "figure.walk"
-        case "Cyclisme":
-            return "bicycle"
-        default:
-            return "questionmark"
-        }
-    }
+    
 }
 
 struct IntensityIndicator: View {
@@ -84,5 +80,5 @@ struct IntensityIndicator: View {
 }
 
 #Preview {
-    ExerciseListView(viewModel: ExerciseListViewModel(context: PersistenceController.preview.container.viewContext))
+    ExerciseListView(viewModel: ExerciseListViewModel())
 }

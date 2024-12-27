@@ -11,7 +11,7 @@ struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
 
         var body: some View {
-            List($viewModel.sleepSessions) { $session in
+            List(viewModel.sleepSessions) { session in
                 HStack {
                     QualityIndicator(quality: session.quality)
                         .padding()
@@ -55,5 +55,5 @@ struct QualityIndicator: View {
 }
 
 #Preview {
-    SleepHistoryView(viewModel: SleepHistoryViewModel(context: PersistenceController.preview.container.viewContext))
+    SleepHistoryView(viewModel: SleepHistoryViewModel())
 }

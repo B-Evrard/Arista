@@ -31,5 +31,11 @@ struct ExerciseRepository {
         newExercise.endDate = EndDate
         try viewContext.save()
     }
+    
+    func deleteAllExercises() throws {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Exercise")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        try viewContext.execute(batchDeleteRequest)
+    }
 }
 
