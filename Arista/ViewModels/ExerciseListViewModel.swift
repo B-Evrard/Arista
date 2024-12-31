@@ -8,7 +8,7 @@
 import Foundation
 
 class ExerciseListViewModel: ObservableObject {
-    @Published var exercises = [Exercise]()
+    @Published var exercises = [ExerciseModel]()
 
     init() {
         fetchExercises()
@@ -29,14 +29,6 @@ class ExerciseListViewModel: ObservableObject {
         fetchExercises()
     }
     
-    func iconForCategory(_ category: String) -> String {
-        if let exerciseType = TypeExercise.from(rawValue: category) {
-            return exerciseType.icon
-        } else {
-            return "questionmark"
-        }
-    }
-    
     func deleteExercise() {
         do {
             let data = ExerciseRepository()
@@ -45,6 +37,12 @@ class ExerciseListViewModel: ObservableObject {
         } catch {
             
         }
+    }
+    
+    func durationForExercise(_ exercise: Exercise) -> String {
+        guard let startDate = exercise.startDate else { return "" }
+        guard let endDate = exercise.endDate else { return "" }
+        return "\(Int(round(endDate.timeIntervalSince(startDate)/60))) minutes"
     }
 }
 

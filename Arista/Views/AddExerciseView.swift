@@ -19,25 +19,12 @@ struct AddExerciseView: View {
                         get: { viewModel.type },
                         set: { newValue in viewModel.type = newValue }
                     )) {
-                        ForEach(TypeExercise.allCases, id: \.self) { type in
-                            Text(type.rawValue.capitalized).tag(type.rawValue)
+                        ForEach(ExerciseType.allCases, id: \.self) { type in
+                            Text(type.rawValue.capitalized).tag(type)
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
-                    .overlay(
-                        
-                        Group {
-                            if viewModel.type.isEmpty {
-                                HStack {
-                                    Spacer()
-                                    Text("Sélectionner")
-                                        .foregroundColor(.gray)
-                                        .allowsHitTesting(false)
-                                }
-                                .padding(.trailing, 20)
-                            }
-                        }
-                    )
+                    
                     
                     HStack {
                         Text("Début")
@@ -73,6 +60,7 @@ struct AddExerciseView: View {
                     
                     if viewModel.showAlert {
                         VStack {
+                            Spacer()
                             Text(viewModel.messageAlert)
                                     .foregroundColor(.white)
                                     .bold()
@@ -80,6 +68,7 @@ struct AddExerciseView: View {
                                     .background(Color.red)
                                     .cornerRadius(8)
                                     .shadow(radius: 10)
+                                    .frame(maxWidth: .infinity, alignment: .center)
                                 Spacer()
                         }
                         .transition(.move(edge: .top))

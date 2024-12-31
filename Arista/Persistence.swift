@@ -28,6 +28,8 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Arista")
+        let storeURL = container.persistentStoreDescriptions.first?.url
+        print("Core Data Store Location: \(storeURL?.path ?? "Not found")")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -49,6 +51,9 @@ struct PersistenceController {
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
         
-        try! DefaultData(viewContext: container.viewContext).apply()
+        if (!inMemory) {
+            try! DefaultData(viewContext: container.viewContext).apply()
+        }
+        
     }
 }
