@@ -15,10 +15,26 @@ struct SleepRepository {
         self.viewContext = viewContext
     }
     
-    func getSleepSessions() throws -> [Sleep] {
+    func getSleepSessions() throws -> [SleepModel] {
         let request = Sleep.fetchRequest()
         request.sortDescriptors =  [NSSortDescriptor(SortDescriptor<Sleep>(\.startDate, order: .reverse) )]
-        return try viewContext.fetch(request)
+        return try viewContext.fetch (request).map { toModel($0) }
+    }
+    
+    func toModel(_ sleep: Sleep) -> SleepModel {
+        return SleepModel(
+            quality: Int(sleep.quality),
+            startDate: sleep.startDate ?? Date(),
+            endDate: sleep.endDate ?? Date()
+        )
+    }
+    
+    func toEntity(_ model: SleepModel) -> Sleep {
+        let sleep = Sleep(context: viewContext)
+        sleep.quality = Int16(model.quality)
+        sleep.startDate = model.startDate
+        sleep.endDate = model.endDate
+        return sleep
     }
     
 }

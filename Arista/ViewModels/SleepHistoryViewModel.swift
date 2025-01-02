@@ -8,7 +8,7 @@
 import Foundation
 
 class SleepHistoryViewModel: ObservableObject {
-    @Published var sleepSessions : [Sleep] = []
+    @Published var sleepSessions : [SleepModel] = []
     
     init() {
         fetchSleepSessions()

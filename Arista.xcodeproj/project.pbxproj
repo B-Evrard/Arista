@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,6 +34,7 @@
 		FEBAE47F2D227CAB00D17664 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB665B32D131BFA00A5AC99 /* ExerciseRepository.swift */; };
 		FEBAE4812D22D8A800D17664 /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBAE4802D22D8A800D17664 /* ExerciseModel.swift */; };
 		FEDC1F212D1DA30B00B554D6 /* ExerciseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDC1F202D1DA30B00B554D6 /* ExerciseType.swift */; };
+		FEFF31312D26E64200D1EF63 /* SleepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF31302D26E64200D1EF63 /* SleepModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +81,12 @@
 		FEB665B32D131BFA00A5AC99 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseRepository.swift; path = Arista/ExerciseRepository.swift; sourceTree = SOURCE_ROOT; };
 		FEBAE4802D22D8A800D17664 /* ExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseModel.swift; path = Arista/ExerciseModel.swift; sourceTree = SOURCE_ROOT; };
 		FEDC1F202D1DA30B00B554D6 /* ExerciseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseType.swift; path = Arista/ExerciseType.swift; sourceTree = SOURCE_ROOT; };
+		FEFF31302D26E64200D1EF63 /* SleepModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SleepModel.swift; path = Arista/SleepModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FEFF31322D26E76700D1EF63 /* Common */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Common; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		53E5872A2B235E8F00E4EF99 /* Frameworks */ = {
@@ -130,6 +136,7 @@
 		53E5872F2B235E8F00E4EF99 /* Arista */ = {
 			isa = PBXGroup;
 			children = (
+				FEFF31322D26E76700D1EF63 /* Common */,
 				53E587612B235FDC00E4EF99 /* ViewModels */,
 				53E587602B235FD700E4EF99 /* Views */,
 				53E5875F2B235FD200E4EF99 /* Models */,
@@ -173,6 +180,7 @@
 			children = (
 				FEAD1C9A2D15AF1C0042AAA0 /* DefaultData.swift */,
 				FEBAE4802D22D8A800D17664 /* ExerciseModel.swift */,
+				FEFF31302D26E64200D1EF63 /* SleepModel.swift */,
 				FEB665B32D131BFA00A5AC99 /* ExerciseRepository.swift */,
 				FEB6658F2D12D10D00A5AC99 /* SleepRepository.swift */,
 				FEDC1F202D1DA30B00B554D6 /* ExerciseType.swift */,
@@ -218,6 +226,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				FEFF31322D26E76700D1EF63 /* Common */,
+			);
 			name = Arista;
 			productName = Arista;
 			productReference = 53E5872D2B235E8F00E4EF99 /* Arista.app */;
@@ -235,6 +246,9 @@
 			);
 			dependencies = (
 				53E587442B235E9000E4EF99 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FEFF31322D26E76700D1EF63 /* Common */,
 			);
 			name = AristaTests;
 			productName = AristaTests;
@@ -340,6 +354,7 @@
 				53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */,
 				53E587672B23600C00E4EF99 /* SleepHistoryView.swift in Sources */,
 				53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */,
+				FEFF31312D26E64200D1EF63 /* SleepModel.swift in Sources */,
 				FEDC1F212D1DA30B00B554D6 /* ExerciseType.swift in Sources */,
 				FEBAE4812D22D8A800D17664 /* ExerciseModel.swift in Sources */,
 				53E587652B23600400E4EF99 /* ExerciseListView.swift in Sources */,

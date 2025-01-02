@@ -21,12 +21,21 @@ class AddExerciseViewModel: ObservableObject {
     func addExercise() -> Bool {
         do {
             self.showAlert = false
-            self.messageAlert = "Selectionner la catégorie"
+           
             if (type == .unknown)
             {
+                self.messageAlert = "Selectionner la catégorie"
                 self.showAlert = true
                 return false
             }
+            
+            if (startTime >= endTime) {
+                self.messageAlert = "Date de début et fin incohérente"
+                self.showAlert = true
+                return false
+            }
+            
+            
             let exerciseModel = ExerciseModel(type: type, intensity: Int(intensity), startDate: startTime, endDate: endTime )
             
             try ExerciseRepository().addExercise(exercise: exerciseModel)

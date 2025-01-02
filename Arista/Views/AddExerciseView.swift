@@ -15,16 +15,26 @@ struct AddExerciseView: View {
         NavigationView {
             VStack {
                 Form {
-                    Picker("Catégorie", selection: Binding(
-                        get: { viewModel.type },
-                        set: { newValue in viewModel.type = newValue }
-                    )) {
-                        ForEach(ExerciseType.allCases, id: \.self) { type in
-                            Text(type.rawValue.capitalized).tag(type)
+
+                    Menu {
+                        ForEach(ExerciseType.allCasesExcludingUnknown, id: \.self) { type in
+                            Button(action: {
+                                viewModel.type = type
+                            }) {
+                                HStack {
+                                    if viewModel.type == type {
+                                        Image(systemName: "checkmark")
+                                    }
+                                    Text(type.rawValue.capitalized)
+                                }
+                            }
                         }
+
+                        
+                    } label: {
+                        Text(viewModel.type == .unknown ? "Sélectionner une catégorie" : viewModel.type.rawValue.capitalized)
+                            .foregroundColor(viewModel.type == .unknown ? Color.gray : Color.blue)
                     }
-                    .pickerStyle(MenuPickerStyle())
-                    
                     
                     HStack {
                         Text("Début")

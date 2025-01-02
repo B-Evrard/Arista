@@ -10,43 +10,52 @@ import SwiftUI
 struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
 
-        var body: some View {
+    var body: some View {
+        NavigationView {
             List(viewModel.sleepSessions) { session in
                 HStack {
                     QualityIndicator(quality: session.quality)
                         .padding()
                     VStack(alignment: .leading) {
-                        Text("Début : \(session.startDate?.formatted() ?? "")")
+                        Text("Début : \(session.startDateFormatted)")
                         
-                        Text("Fin : \(session.endDate?.formatted() ?? "")")
+                        Text("Fin : \(session.endDateFormatted)")
                     }
                 }
             }
-            .navigationTitle("Historique de Sommeil")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Sommeil")
+                        .font(.title)
+                        .foregroundColor(.blue)
+                }
+            }
         }
+    }
 }
 
 struct QualityIndicator: View {
-    let quality: Int16
+    let quality: Int
 
     var body: some View {
         ZStack {
             Circle()
                 .stroke(qualityColor(Int(quality)), lineWidth: 5)
                 .foregroundColor(qualityColor(Int(quality)))
-                .frame(width: 30, height: 30)
+                .frame(width: 35, height: 35)
             Text("\(quality)")
                 .foregroundColor(qualityColor(Int(quality)))
         }
     }
 
     func qualityColor(_ quality: Int) -> Color {
-        switch (10-quality) {
-        case 0...3:
+        switch (100-quality) {
+        case 0...39:
             return .green
-        case 4...6:
+        case 40...69:
             return .yellow
-        case 7...10:
+        case 70...100:
             return .red
         default:
             return .gray

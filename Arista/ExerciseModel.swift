@@ -19,4 +19,27 @@ struct ExerciseModel: Identifiable {
          "\(Int(round(endDate.timeIntervalSince(startDate)/60))) minutes"
     }
     
+    
+    var intensityIndicator: String {
+        switch intensity {
+        case 0...6:
+            return "green"
+        case 7...15:
+            return "yellow"
+        case 16...20:
+            return "red"
+        default:
+            return "gray"
+        }
+    }
+    
+    var startDateFormatted: String {
+        Utils.formattedDate(startDate)
+    }
+    
+    var endDateFormatted: String {
+        Utils.formattedDate(endDate)
+    }
+    
+    
 }

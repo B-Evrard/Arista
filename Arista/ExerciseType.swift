@@ -35,7 +35,7 @@ enum ExerciseType: String,CaseIterable {
     
     init (rawValue: String) {
         switch rawValue {
-        case "footbal":
+        case "football":
             self = .football
         case "natation":
             self = .natation
@@ -51,8 +51,12 @@ enum ExerciseType: String,CaseIterable {
         }
     }
     
-    func alltype() -> [String] {
-        return ExerciseType.allCases.filter({ $0 != .unknown}).map { String(describing: $0) }
+   
+}
+
+extension ExerciseType {
+    static var allCasesExcludingUnknown: [ExerciseType] {
+        return Self.allCases.filter { $0 != .unknown }
     }
 }
 

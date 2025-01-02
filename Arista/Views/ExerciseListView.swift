@@ -16,20 +16,31 @@ struct ExerciseListView: View {
             List(viewModel.exercises) { exercise  in
                 HStack {
                     Image(systemName: exercise.type.icon)
+                        .frame(width: 20, height: 10)
                     VStack(alignment: .leading) {
                         Text(exercise.type.rawValue)
                             .font(.headline)
                         Text("Durée: \(exercise.duration)")
                         .font(.subheadline)
-                        Text(exercise.startDate.formatted())
+                        Text(exercise.startDateFormatted)
                         .font(.subheadline)
                         
                     }
                     Spacer()
-                    //IntensityIndicator(intensity: exercise.intensity)
+                    Circle()
+                        .fill(colorFromString(exercise.intensityIndicator))
+                        .frame(width: 10, height: 10)
+                    
                 }
             }
-            .navigationTitle("Exercices")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Exercices")
+                        .font(.title)
+                        .foregroundColor(.blue)
+                }
+            }
             .navigationBarItems(trailing: Button(action: {
                 showingAddExerciseView = true
             }) {
@@ -53,31 +64,23 @@ struct ExerciseListView: View {
         
     }
     
-    
-}
-
-struct IntensityIndicator: View {
-    var intensity: Int
-    
-    var body: some View {
-        Circle()
-            .fill(colorForIntensity(intensity))
-            .frame(width: 10, height: 10)
-    }
-    
-    func colorForIntensity(_ intensity: Int) -> Color {
-        switch intensity {
-        case 0...3:
+    func colorFromString(_ colorName: String) -> Color {
+        switch colorName {
+        case "green":
             return .green
-        case 4...6:
+        case "yellow":
             return .yellow
-        case 7...10:
+        case "red":
             return .red
-        default:
+        case "gray":
             return .gray
+        default:
+            return .black
         }
     }
 }
+
+
 
 #Preview {
     ExerciseListView(viewModel: ExerciseListViewModel())
