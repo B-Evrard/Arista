@@ -58,7 +58,11 @@ struct ExerciseListView: View {
         {
             AddExerciseView(viewModel: AddExerciseViewModel())
         }
-
+        .alert("Erreur", isPresented: $viewModel.showError) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Une erreur est survenue")
+        }
         
         
         

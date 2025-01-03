@@ -9,6 +9,7 @@ import Foundation
 
 class SleepHistoryViewModel: ObservableObject {
     @Published var sleepSessions : [SleepModel] = []
+    @Published var showError = false
     
     init() {
         fetchSleepSessions()
@@ -17,11 +18,11 @@ class SleepHistoryViewModel: ObservableObject {
     private func fetchSleepSessions() {
         
         do {
+            self.showError = false
             let data = SleepRepository()
             sleepSessions = try data.getSleepSessions()
-            
         } catch {
-            
+            self.showError = true
         }
     }
 }

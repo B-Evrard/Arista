@@ -9,6 +9,7 @@ import Foundation
 
 class ExerciseListViewModel: ObservableObject {
     @Published var exercises = [ExerciseModel]()
+    @Published var showError = false
 
     init() {
         fetchExercises()
@@ -17,11 +18,11 @@ class ExerciseListViewModel: ObservableObject {
     private func fetchExercises() {
        
         do {
+            self.showError = false
             let data = ExerciseRepository()
             exercises = try data.getExercise()
-            print ("stop")
         } catch {
-            
+            self.showError = true
         }
     }
     
@@ -31,11 +32,12 @@ class ExerciseListViewModel: ObservableObject {
     
     func deleteExercise() {
         do {
+            self.showError = false
             let data = ExerciseRepository()
             try data.deleteAllExercises()
             fetchExercises()
         } catch {
-            
+            self.showError = true
         }
     }
     
