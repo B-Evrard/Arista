@@ -20,11 +20,21 @@ class SleepHistoryViewModel: ObservableObject {
         do {
             self.showError = false
             let data = SleepRepository()
-            sleepSessions = try data.getSleepSessions()
+            sleepSessions = try data.getSleepSessions().map(toModel(_:))
         } catch {
             self.showError = true
         }
     }
+    
+    func toModel(_ sleep: Sleep) -> SleepModel {
+        return SleepModel(
+            quality: Int(sleep.quality),
+            startDate: sleep.startDate ?? Date(),
+            endDate: sleep.endDate ?? Date()
+        )
+    }
+    
+    
 }
 
 

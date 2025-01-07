@@ -8,10 +8,11 @@
 import Foundation
 
 struct ExerciseModel: Identifiable {
+    
     var id: UUID = UUID()
     
     var type: ExerciseType
-    var intensity: Int
+    var intensity: Double
     var startDate: Date
     var endDate: Date
 

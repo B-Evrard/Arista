@@ -8,37 +8,35 @@
 import Foundation
 
 class AddExerciseViewModel: ObservableObject {
-    @Published var type = ExerciseType.unknown
-    @Published var startTime: Date = Date()
-    @Published var endTime: Date = Date()
-    @Published var intensity = 10.0
+    
+    @Published var exercise: ExerciseModel
     
     @Published var showAlert: Bool = false
     @Published var messageAlert: String = ""
     
+    init() {
+        self.exercise = ExerciseModel(type: ExerciseType.unknown, intensity: 10.0, startDate: Date(), endDate: Date())
+    }
     
    
     func addExercise() -> Bool {
         do {
             self.showAlert = false
            
-            if (type == .unknown)
+            if (exercise.type == .unknown)
             {
                 self.messageAlert = "Selectionner la catégorie"
                 self.showAlert = true
                 return false
             }
             
-            if (startTime >= endTime) {
+            if (exercise.startDate >= exercise.endDate) {
                 self.messageAlert = "Date de début et fin incohérente"
                 self.showAlert = true
                 return false
             }
             
-            
-            let exerciseModel = ExerciseModel(type: type, intensity: Int(intensity), startDate: startTime, endDate: endTime )
-            
-            try ExerciseRepository().addExercise(exercise: exerciseModel)
+            try ExerciseRepository().addExercise(model: exercise)
             return true
         } catch  {
             self.showAlert = true
@@ -48,5 +46,4 @@ class AddExerciseViewModel: ObservableObject {
         
     }
     
-   
 }

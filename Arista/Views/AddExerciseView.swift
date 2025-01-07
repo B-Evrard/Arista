@@ -19,10 +19,10 @@ struct AddExerciseView: View {
                     Menu {
                         ForEach(ExerciseType.allCasesExcludingUnknown, id: \.self) { type in
                             Button(action: {
-                                viewModel.type = type
+                                viewModel.exercise.type = type
                             }) {
                                 HStack {
-                                    if viewModel.type == type {
+                                    if viewModel.exercise.type == type {
                                         Image(systemName: "checkmark")
                                     }
                                     Text(type.rawValue.capitalized)
@@ -32,15 +32,15 @@ struct AddExerciseView: View {
 
                         
                     } label: {
-                        Text(viewModel.type == .unknown ? "Sélectionner une catégorie" : viewModel.type.rawValue.capitalized)
-                            .foregroundColor(viewModel.type == .unknown ? Color.gray : Color.blue)
+                        Text(viewModel.exercise.type == .unknown ? "Sélectionner une catégorie" : viewModel.exercise.type.rawValue.capitalized)
+                            .foregroundColor(viewModel.exercise.type == .unknown ? Color.gray : Color.blue)
                     }
                     
                     HStack {
                         Text("Début")
                         Spacer()
                         DatePicker("Début",
-                                   selection:  $viewModel.startTime,
+                                   selection:  $viewModel.exercise.startDate,
                                    displayedComponents: [.date, .hourAndMinute]
                         )
                         .datePickerStyle(DefaultDatePickerStyle())
@@ -51,7 +51,7 @@ struct AddExerciseView: View {
                         Text("Fin")
                         Spacer()
                         DatePicker("Fin",
-                                   selection:  $viewModel.endTime,
+                                   selection:  $viewModel.exercise.endDate,
                                    displayedComponents: [.date, .hourAndMinute]
                         )
                         .datePickerStyle(DefaultDatePickerStyle())
@@ -61,11 +61,11 @@ struct AddExerciseView: View {
                     VStack {
                         Text("Intensité")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Slider(value: $viewModel.intensity, in: 1...20, step: 1)
+                        Slider(value: $viewModel.exercise.intensity, in: 1...20, step: 1)
                                 {Text("Intensité")}
                                 minimumValueLabel: { Text("1")}
                                 maximumValueLabel: {Text("20")}
-                        Text(String(format: "%.0f", viewModel.intensity))
+                        Text(String(format: "%.0f", viewModel.exercise.intensity))
                     }
                     
                     if viewModel.showAlert {

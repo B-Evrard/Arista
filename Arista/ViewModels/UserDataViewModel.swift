@@ -8,8 +8,12 @@
 import Foundation
 
 class UserDataViewModel: ObservableObject {
-    @Published var firstName: String = ""
-    @Published var lastName: String = ""
+    @Published var userModel: UserModel?
+    @Published var showError = false
+    
+    var fullName: String {
+       return "\(userModel?.firstName ?? "") \(userModel?.lastName ?? "")"
+    }
 
     init() {
         fetchUserData()
@@ -17,13 +21,21 @@ class UserDataViewModel: ObservableObject {
 
     private func fetchUserData() {
         do {
-            guard let user = try UserRepository().getUser() else {
-                fatalError()
-            }
-            firstName = user.firstName ?? ""
-            lastName = user.lastName ?? ""
+            self.showError = false
+            let user = try UserRepository().getUser()
+            userModel = toModel(user)
         } catch {
-            
+            self.showError = true
         }
     }
+    
+    func toModel(_ user: User) -> UserModel {
+        return UserModel(
+            firstName: user.firstName ?? "",
+            lastName: user.lastName ?? "",
+            password: user.password ?? ""
+        )
+    }
+    
+    
 }

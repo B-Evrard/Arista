@@ -16,15 +16,19 @@ struct ExerciseRepository {
     }
         
         
-    func getExercise() throws -> [ExerciseModel] {
+    func getExercise() throws -> [Exercise] {
         let request = Exercise.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(SortDescriptor<Exercise>(\.startDate, order: .reverse))]
-        return try viewContext.fetch (request).map { toModel($0) }
+        return try viewContext.fetch (request).map { $0 }
     }
    
    
-    func addExercise(exercise: ExerciseModel) throws {
-        _ = toEntity(exercise)
+    func addExercise(model: ExerciseModel) throws {
+        let exercise = Exercise(context: viewContext)
+        exercise.type = model.type.rawValue
+        exercise.intensity = Int16(model.intensity)
+        exercise.startDate = model.startDate
+        exercise.endDate = model.endDate
         try viewContext.save()
     }
     
@@ -34,22 +38,6 @@ struct ExerciseRepository {
         try viewContext.execute(batchDeleteRequest)
     }
     
-    func toModel(_ exercise: Exercise) -> ExerciseModel {
-        return ExerciseModel(
-            type: ExerciseType(rawValue: exercise.type ?? "") ,
-            intensity: Int(exercise.intensity),
-            startDate: exercise.startDate ?? Date(),
-            endDate: exercise.endDate ?? Date()
-        )
-    }
     
-    func toEntity(_ model: ExerciseModel) -> Exercise {
-        let exercise = Exercise(context: viewContext)
-        exercise.type = model.type.rawValue
-        exercise.intensity = Int16(model.intensity)
-        exercise.startDate = model.startDate
-        exercise.endDate = model.endDate
-        return exercise
-    }
 }
 

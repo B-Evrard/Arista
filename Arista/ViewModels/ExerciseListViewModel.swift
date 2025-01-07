@@ -20,7 +20,7 @@ class ExerciseListViewModel: ObservableObject {
         do {
             self.showError = false
             let data = ExerciseRepository()
-            exercises = try data.getExercise()
+            exercises = try data.getExercise().map(toModel(_:))
         } catch {
             self.showError = true
         }
@@ -40,6 +40,17 @@ class ExerciseListViewModel: ObservableObject {
             self.showError = true
         }
     }
+    
+    func toModel(_ exercise: Exercise) -> ExerciseModel {
+        return ExerciseModel(
+            type: ExerciseType(rawValue: exercise.type ?? "") ,
+            intensity: Double(exercise.intensity),
+            startDate: exercise.startDate ?? Date(),
+            endDate: exercise.endDate ?? Date()
+        )
+    }
+    
+    
     
 }
 

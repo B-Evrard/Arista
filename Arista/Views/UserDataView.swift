@@ -15,7 +15,7 @@ struct UserDataView: View {
             Spacer()
             Text("Hello")
                 .font(.largeTitle)
-            Text("\(viewModel.firstName) \(viewModel.lastName)")
+            Text(viewModel.fullName)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.blue)
@@ -23,6 +23,11 @@ struct UserDataView: View {
                 .scaleEffect(1.2)
                 .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: UUID())
             Spacer()
+        }
+        .alert("Erreur", isPresented: $viewModel.showError) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Une erreur est survenue")
         }
         .edgesIgnoringSafeArea(.all)
     }
