@@ -25,7 +25,6 @@
 		53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */; };
 		FE46F91A2D2191E200567ECB /* ExerciceRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE46F9192D2191E200567ECB /* ExerciceRepositoryTests.swift */; };
 		FE46F91B2D21938200567ECB /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587682B23616A00E4EF99 /* UserDataViewModel.swift */; };
-		FE46F91C2D21939500567ECB /* Arista.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */; };
 		FEAD1C9B2D15AF1C0042AAA0 /* DefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD1C9A2D15AF1C0042AAA0 /* DefaultData.swift */; };
 		FEB6658E2D12C3FC00A5AC99 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB6658D2D12C3FC00A5AC99 /* UserRepository.swift */; };
 		FEB665902D12D10D00A5AC99 /* SleepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB6658F2D12D10D00A5AC99 /* SleepRepository.swift */; };
@@ -33,6 +32,13 @@
 		FEBAE47E2D227C6C00D17664 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587392B235E9000E4EF99 /* Persistence.swift */; };
 		FEBAE47F2D227CAB00D17664 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB665B32D131BFA00A5AC99 /* ExerciseRepository.swift */; };
 		FEBAE4812D22D8A800D17664 /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBAE4802D22D8A800D17664 /* ExerciseModel.swift */; };
+		FECEC4F92D2D15C400379909 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF313B2D27E43100D1EF63 /* UserModel.swift */; };
+		FECEC4FA2D2D15D300379909 /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBAE4802D22D8A800D17664 /* ExerciseModel.swift */; };
+		FECEC4FB2D2D15E900379909 /* ExerciseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDC1F202D1DA30B00B554D6 /* ExerciseType.swift */; };
+		FECEC4FC2D2D15FB00379909 /* DefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD1C9A2D15AF1C0042AAA0 /* DefaultData.swift */; };
+		FECEC4FD2D2D162800379909 /* SleepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB6658F2D12D10D00A5AC99 /* SleepRepository.swift */; };
+		FECEC4FE2D2D162E00379909 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB6658D2D12C3FC00A5AC99 /* UserRepository.swift */; };
+		FECEC5012D2D819E00379909 /* Arista.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */; };
 		FEDC1F212D1DA30B00B554D6 /* ExerciseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDC1F202D1DA30B00B554D6 /* ExerciseType.swift */; };
 		FEFF31312D26E64200D1EF63 /* SleepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF31302D26E64200D1EF63 /* SleepModel.swift */; };
 		FEFF313C2D27E43100D1EF63 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF313B2D27E43100D1EF63 /* UserModel.swift */; };
@@ -376,11 +382,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FECEC4FE2D2D162E00379909 /* UserRepository.swift in Sources */,
+				FECEC5012D2D819E00379909 /* Arista.xcdatamodeld in Sources */,
 				53E587472B235E9000E4EF99 /* AristaTests.swift in Sources */,
+				FECEC4FD2D2D162800379909 /* SleepRepository.swift in Sources */,
 				FE46F91A2D2191E200567ECB /* ExerciceRepositoryTests.swift in Sources */,
+				FECEC4FC2D2D15FB00379909 /* DefaultData.swift in Sources */,
+				FECEC4F92D2D15C400379909 /* UserModel.swift in Sources */,
 				FE46F91B2D21938200567ECB /* UserDataViewModel.swift in Sources */,
-				FE46F91C2D21939500567ECB /* Arista.xcdatamodeld in Sources */,
 				FEBAE47E2D227C6C00D17664 /* Persistence.swift in Sources */,
+				FECEC4FB2D2D15E900379909 /* ExerciseType.swift in Sources */,
+				FECEC4FA2D2D15D300379909 /* ExerciseModel.swift in Sources */,
 				FEBAE47F2D227CAB00D17664 /* ExerciseRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +557,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -574,6 +587,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -590,11 +604,10 @@
 		53E5875A2B235E9000E4EF99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.arista.AristaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -608,11 +621,10 @@
 		53E5875B2B235E9000E4EF99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.arista.AristaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
