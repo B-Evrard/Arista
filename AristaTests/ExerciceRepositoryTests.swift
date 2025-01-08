@@ -10,6 +10,8 @@ import CoreData
 
 final class ExerciceRepositoryTests: XCTestCase {
     
+    let persistenceController = MockPersistenceController.shared
+    
     private func emptyEntities(context: NSManagedObjectContext) {
         
         let fetchRequest = Exercise.fetchRequest()
@@ -64,10 +66,8 @@ final class ExerciceRepositoryTests: XCTestCase {
         
         // Clean manually all data
         
-        //let persistenceController = PersistenceController(inMemory: true)
-        
-        let persistenceController = PersistenceController.shared
-        
+       //let persistenceController = PersistenceController(inMemory: true)
+       
         emptyEntities(context: persistenceController.container.viewContext)
         
         let data = ExerciseRepository(viewContext: persistenceController.container.viewContext)
@@ -75,24 +75,11 @@ final class ExerciceRepositoryTests: XCTestCase {
         let exercises = try! data.getExercise()
         
         XCTAssert(exercises.isEmpty == true)
-        
-        // TODO: - Delete
-//        let dataUser = UserRepository(viewContext: persistenceController.container.viewContext)
-//        
-//        let user = try? dataUser.getUser()
-//        
-//        XCTAssert(user == nil)
-        
     }
     
     func test_WhenAddingOneExerciseInDatabase_GetExercise_ReturnAListContainingTheExercise() {
         
         // Clean manually all data
-        
-        let persistenceController = PersistenceController(inMemory: true)
-        let entities = persistenceController.container.managedObjectModel.entities
-        print("Entities: \(entities.map { $0.name ?? "Unnamed" })")
-            
         emptyEntities(context: persistenceController.container.viewContext)
         
         let date = Date()
@@ -124,7 +111,6 @@ final class ExerciceRepositoryTests: XCTestCase {
         
         // Clean manually all data
         
-        let persistenceController = PersistenceController(inMemory: true)
         let entities = persistenceController.container.managedObjectModel.entities
             print("Entities: \(entities.map { $0.name ?? "Unnamed" })")
             

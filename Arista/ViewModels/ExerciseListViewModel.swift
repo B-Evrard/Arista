@@ -12,7 +12,7 @@ class ExerciseListViewModel: ObservableObject {
     @Published var showError = false
 
     init() {
-        fetchExercises()
+        //fetchExercises()
     }
 
     private func fetchExercises() {
@@ -27,7 +27,7 @@ class ExerciseListViewModel: ObservableObject {
     }
     
     func refreshExercises() {
-        fetchExercises()
+        //fetchExercises()
     }
     
     func deleteExercise() {
