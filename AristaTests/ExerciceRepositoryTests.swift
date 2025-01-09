@@ -10,7 +10,7 @@ import CoreData
 
 final class ExerciceRepositoryTests: XCTestCase {
     
-    let persistenceController = MockPersistenceController.shared
+    
     
     private func emptyEntities(context: NSManagedObjectContext) {
         
@@ -33,6 +33,8 @@ final class ExerciceRepositoryTests: XCTestCase {
     }
     
     private func addExercice(context: NSManagedObjectContext, category: String, intensity: Int, startDate: Date, endDate: Date,  userFirstName: String, userLastName: String, password: String) {
+        
+        print("Current Context: \(context)")
         
         let newUser = User(context: context)
         
@@ -67,6 +69,8 @@ final class ExerciceRepositoryTests: XCTestCase {
         // Clean manually all data
         
        //let persistenceController = PersistenceController(inMemory: true)
+        let persistenceController = MockPersistenceController.shared
+        print("Current Context: \(persistenceController.container.viewContext)")
        
         emptyEntities(context: persistenceController.container.viewContext)
         
@@ -79,6 +83,7 @@ final class ExerciceRepositoryTests: XCTestCase {
     
     func test_WhenAddingOneExerciseInDatabase_GetExercise_ReturnAListContainingTheExercise() {
         
+        let persistenceController = MockPersistenceController.shared
         // Clean manually all data
         emptyEntities(context: persistenceController.container.viewContext)
         
@@ -86,7 +91,7 @@ final class ExerciceRepositoryTests: XCTestCase {
         let secondesAleatoires = Int.random(in: 3600...7200)
         let endDate = date.addingTimeInterval(TimeInterval(secondesAleatoires))
         
-        
+        print("Current Context: \(persistenceController.container.viewContext)")
         addExercice(context: persistenceController.container.viewContext, category: "Football", intensity: 5, startDate: date, endDate: endDate, userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
 
         let data = ExerciseRepository(viewContext: persistenceController.container.viewContext)
@@ -103,12 +108,13 @@ final class ExerciceRepositoryTests: XCTestCase {
         
         XCTAssert(exercises.first?.startDate == date)
         
-        XCTAssert(exercises.first?.startDate == endDate)
+        XCTAssert(exercises.first?.endDate == endDate)
         
     }
     
     func test_WhenAddingMultipleExerciseInDatabase_GetExercise_ReturnAListContainingTheExerciseInTheRightOrder() {
         
+        let persistenceController = MockPersistenceController.shared
         // Clean manually all data
         
         let entities = persistenceController.container.managedObjectModel.entities
@@ -188,6 +194,40 @@ final class ExerciceRepositoryTests: XCTestCase {
         XCTAssert(exercises[1].type == "Fitness")
         
         XCTAssert(exercises[2].type == "Running")
+        
+    }
+    
+    func test_AddExercise() {
+        let persistenceController = MockPersistenceController.shared
+        
+        let entities = persistenceController.container.managedObjectModel.entities
+            print("Entities: \(entities.map { $0.name ?? "Unnamed" })")
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let data = ExerciseRepository(viewContext: persistenceController.container.viewContext)
+        let startDate = Date()
+        let endDate = addRandomTime(to: startDate)
+        
+        let exercideModel = ExerciseModel(type: ExerciseType.cyclisme, intensity: 10.0, startDate: startDate, endDate: endDate)
+        
+        do {
+            try data.addExercise(model: exercideModel)
+            
+            let exercises = try! data.getExercise()
+            
+            XCTAssert(exercises.isEmpty == false)
+            
+            XCTAssert(exercises.first?.type == ExerciseType.cyclisme.rawValue)
+            
+            XCTAssert(exercises.first?.intensity == 10)
+            
+            XCTAssert(exercises.first?.startDate == startDate)
+            
+            XCTAssert(exercises.first?.endDate == endDate)
+        }
+        catch {
+           
+        }
         
     }
     

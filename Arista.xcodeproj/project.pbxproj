@@ -23,6 +23,7 @@
 		53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */; };
 		53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */; };
 		53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */; };
+		FE3F1FE42D300A8F00D6B147 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587392B235E9000E4EF99 /* Persistence.swift */; };
 		FE46F91A2D2191E200567ECB /* ExerciceRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE46F9192D2191E200567ECB /* ExerciceRepositoryTests.swift */; };
 		FE46F91B2D21938200567ECB /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587682B23616A00E4EF99 /* UserDataViewModel.swift */; };
 		FEAD1C9B2D15AF1C0042AAA0 /* DefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD1C9A2D15AF1C0042AAA0 /* DefaultData.swift */; };
@@ -39,7 +40,6 @@
 		FECEC4FE2D2D162E00379909 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB6658D2D12C3FC00A5AC99 /* UserRepository.swift */; };
 		FECEC5062D2EBD6500379909 /* MockPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEC5052D2EBD6500379909 /* MockPersistenceController.swift */; };
 		FECEC5082D2EC4C200379909 /* Arista.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */; };
-		FECEC5092D2EC60200379909 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587392B235E9000E4EF99 /* Persistence.swift */; };
 		FEDC1F212D1DA30B00B554D6 /* ExerciseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDC1F202D1DA30B00B554D6 /* ExerciseType.swift */; };
 		FEFF31312D26E64200D1EF63 /* SleepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF31302D26E64200D1EF63 /* SleepModel.swift */; };
 		FEFF313C2D27E43100D1EF63 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF313B2D27E43100D1EF63 /* UserModel.swift */; };
@@ -388,7 +388,7 @@
 				FECEC4FE2D2D162E00379909 /* UserRepository.swift in Sources */,
 				FECEC5062D2EBD6500379909 /* MockPersistenceController.swift in Sources */,
 				53E587472B235E9000E4EF99 /* AristaTests.swift in Sources */,
-				FECEC5092D2EC60200379909 /* Persistence.swift in Sources */,
+				FE3F1FE42D300A8F00D6B147 /* Persistence.swift in Sources */,
 				FECEC5082D2EC4C200379909 /* Arista.xcdatamodeld in Sources */,
 				FECEC4FD2D2D162800379909 /* SleepRepository.swift in Sources */,
 				FE46F91A2D2191E200567ECB /* ExerciceRepositoryTests.swift in Sources */,

@@ -16,7 +16,7 @@ class UserDataViewModel: ObservableObject {
     }
 
     init() {
-        //fetchUserData()
+        fetchUserData()
     }
 
     private func fetchUserData() {

@@ -15,7 +15,7 @@
 
 import CoreData
 
-struct MockPersistenceController {
+class MockPersistenceController {
     
     static let shared = MockPersistenceController()
 
@@ -36,14 +36,20 @@ struct MockPersistenceController {
     let container: NSPersistentContainer
 
     init() {
-        container = NSPersistentContainer(name: "Arista")
-        container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        let bundle = Bundle(for: type(of: self))
+        guard let modelURL = bundle.url(forResource: "Arista", withExtension: "momd"),
+              let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
+            fatalError("Failed to load Core Data model")
+        }
+
+        container = NSPersistentContainer(name: "Arista", managedObjectModel: managedObjectModel)
+        container.persistentStoreDescriptions.first?.type = NSInMemoryStoreType
+        container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
-                
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-        })
+        }
+
         container.viewContext.automaticallyMergesChangesFromParent = true
         
     }

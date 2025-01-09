@@ -12,7 +12,7 @@ class SleepHistoryViewModel: ObservableObject {
     @Published var showError = false
     
     init() {
-        //fetchSleepSessions()
+        fetchSleepSessions()
     }
     
     private func fetchSleepSessions() {
