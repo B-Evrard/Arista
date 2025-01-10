@@ -33,9 +33,16 @@ struct ExerciseRepository {
     }
     
     func deleteAllExercises() throws {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Exercise")
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        try viewContext.execute(batchDeleteRequest)
+        do {
+            let fetchRequest = Exercise.fetchRequest()
+            let objects = try viewContext.fetch(fetchRequest)
+            for exercice in objects {
+                viewContext.delete(exercice)
+            }
+            try viewContext.save()
+        } catch {
+            print("Failed to fetch or delete objects: \(error)")
+        }
     }
     
     

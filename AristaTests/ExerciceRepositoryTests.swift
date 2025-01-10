@@ -18,8 +18,6 @@ final class ExerciceRepositoryTests: XCTestCase {
         
         let objects = try! context.fetch(fetchRequest)
         
-        
-        
         for exercice in objects {
             
             context.delete(exercice)
@@ -33,8 +31,6 @@ final class ExerciceRepositoryTests: XCTestCase {
     }
     
     private func addExercice(context: NSManagedObjectContext, category: String, intensity: Int, startDate: Date, endDate: Date,  userFirstName: String, userLastName: String, password: String) {
-        
-        print("Current Context: \(context)")
         
         let newUser = User(context: context)
         
@@ -66,12 +62,9 @@ final class ExerciceRepositoryTests: XCTestCase {
     
     func test_WhenNoExerciseIsInDatabase_GetExercise_ReturnEmptyList() {
         
-        // Clean manually all data
-        
-       //let persistenceController = PersistenceController(inMemory: true)
         let persistenceController = MockPersistenceController.shared
-        print("Current Context: \(persistenceController.container.viewContext)")
-       
+        
+        // Clean manually all data
         emptyEntities(context: persistenceController.container.viewContext)
         
         let data = ExerciseRepository(viewContext: persistenceController.container.viewContext)
@@ -84,14 +77,14 @@ final class ExerciceRepositoryTests: XCTestCase {
     func test_WhenAddingOneExerciseInDatabase_GetExercise_ReturnAListContainingTheExercise() {
         
         let persistenceController = MockPersistenceController.shared
+        
         // Clean manually all data
         emptyEntities(context: persistenceController.container.viewContext)
         
         let date = Date()
-        let secondesAleatoires = Int.random(in: 3600...7200)
-        let endDate = date.addingTimeInterval(TimeInterval(secondesAleatoires))
         
-        print("Current Context: \(persistenceController.container.viewContext)")
+        let endDate = addRandomTime(to: date)
+        
         addExercice(context: persistenceController.container.viewContext, category: "Football", intensity: 5, startDate: date, endDate: endDate, userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
 
         let data = ExerciseRepository(viewContext: persistenceController.container.viewContext)
@@ -115,12 +108,8 @@ final class ExerciceRepositoryTests: XCTestCase {
     func test_WhenAddingMultipleExerciseInDatabase_GetExercise_ReturnAListContainingTheExerciseInTheRightOrder() {
         
         let persistenceController = MockPersistenceController.shared
+        
         // Clean manually all data
-        
-        let entities = persistenceController.container.managedObjectModel.entities
-            print("Entities: \(entities.map { $0.name ?? "Unnamed" })")
-            
-        
         emptyEntities(context: persistenceController.container.viewContext)
         
         let date1 = Date()
@@ -224,6 +213,40 @@ final class ExerciceRepositoryTests: XCTestCase {
             XCTAssert(exercises.first?.startDate == startDate)
             
             XCTAssert(exercises.first?.endDate == endDate)
+        }
+        catch {
+           
+        }
+        
+    }
+    
+    func test_DeleteAllExercise() {
+        let persistenceController = MockPersistenceController.shared
+        
+        let entities = persistenceController.container.managedObjectModel.entities
+            print("Entities: \(entities.map { $0.name ?? "Unnamed" })")
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let data = ExerciseRepository(viewContext: persistenceController.container.viewContext)
+        let startDate = Date()
+        let endDate = addRandomTime(to: startDate)
+        
+        let exercideModel = ExerciseModel(type: ExerciseType.cyclisme, intensity: 10.0, startDate: startDate, endDate: endDate)
+        
+        do {
+            try data.addExercise(model: exercideModel)
+            
+            var exercises = try! data.getExercise()
+            
+            XCTAssertFalse(exercises.isEmpty)
+            
+            try data.deleteAllExercises()
+            
+            exercises = try! data.getExercise()
+            
+            XCTAssertTrue(exercises.isEmpty)
+            
+            
         }
         catch {
            
