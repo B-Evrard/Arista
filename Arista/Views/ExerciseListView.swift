@@ -87,5 +87,5 @@ struct ExerciseListView: View {
 
 
 #Preview {
-    ExerciseListView(viewModel: ExerciseListViewModel())
+    ExerciseListView(viewModel: ExerciseListViewModel(context: PersistenceController.preview.container.viewContext))
 }

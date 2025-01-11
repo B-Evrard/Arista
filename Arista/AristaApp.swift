@@ -24,7 +24,7 @@ struct AristaApp: App {
                             Label("Utilisateur", systemImage: "person")
                         }
                     
-                    ExerciseListView(viewModel: ExerciseListViewModel())
+                    ExerciseListView(viewModel: ExerciseListViewModel(context: persistenceController.container.viewContext))
                         //.environment(\.managedObjectContext, persistenceController.container.viewContext)
                         .tabItem {
                             Label("Exercices", systemImage: "flame")
