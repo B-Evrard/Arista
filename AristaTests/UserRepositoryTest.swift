@@ -39,7 +39,7 @@ final class UserRepositoryTest: XCTestCase {
     
     func test_WhenNoUser() {
         
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         
         emptyEntities(context: persistenceController.container.viewContext)
         
@@ -52,7 +52,7 @@ final class UserRepositoryTest: XCTestCase {
     
     func test_WhenAddingOneUser() {
         
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         emptyEntities(context: persistenceController.container.viewContext)
         
         addUser(context: persistenceController.container.viewContext, userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")

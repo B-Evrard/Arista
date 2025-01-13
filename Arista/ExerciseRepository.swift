@@ -11,7 +11,7 @@ import CoreData
 struct ExerciseRepository {
     
     let viewContext: NSManagedObjectContext
-    init(viewContext: NSManagedObjectContext = PersistenceController.shared!.container.viewContext) {
+    init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.viewContext = viewContext
     }
         

@@ -44,7 +44,7 @@ final class SleepRepositoryTest: XCTestCase {
     
     func test_WhenNoSleep() {
         
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         
         emptyEntities(context: persistenceController.container.viewContext)
         
@@ -57,7 +57,7 @@ final class SleepRepositoryTest: XCTestCase {
     
     func test_WhenAddingOneSleep() {
         
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         emptyEntities(context: persistenceController.container.viewContext)
         
         let date = Date()
@@ -83,7 +83,7 @@ final class SleepRepositoryTest: XCTestCase {
     
     func test_WhenAddingMultipleSleep_GetExercise_ReturnAListInTheRightOrder() {
         
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         emptyEntities(context: persistenceController.container.viewContext)
         
         let date1 = Date()

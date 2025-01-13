@@ -17,7 +17,7 @@ struct UserRepository {
     let viewContext: NSManagedObjectContext
     
     // Comment eviter !
-    init(viewContext: NSManagedObjectContext = PersistenceController.shared!.container.viewContext) {
+    init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
        self.viewContext = viewContext
     }
     

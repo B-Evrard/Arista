@@ -8,9 +8,9 @@
 import XCTest
 import CoreData
 
+
+
 final class ExerciceRepositoryTests: XCTestCase {
-    
-    
     
     private func emptyEntities(context: NSManagedObjectContext) {
         
@@ -62,7 +62,7 @@ final class ExerciceRepositoryTests: XCTestCase {
     
     func test_WhenNoExerciseIsInDatabase_GetExercise_ReturnEmptyList() {
         
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         
         // Clean manually all data
         emptyEntities(context: persistenceController.container.viewContext)
@@ -76,7 +76,7 @@ final class ExerciceRepositoryTests: XCTestCase {
     
     func test_WhenAddingOneExerciseInDatabase_GetExercise_ReturnAListContainingTheExercise() {
         
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         
         // Clean manually all data
         emptyEntities(context: persistenceController.container.viewContext)
@@ -107,7 +107,7 @@ final class ExerciceRepositoryTests: XCTestCase {
     
     func test_WhenAddingMultipleExerciseInDatabase_GetExercise_ReturnAListContainingTheExerciseInTheRightOrder() {
         
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         
         // Clean manually all data
         emptyEntities(context: persistenceController.container.viewContext)
@@ -187,7 +187,7 @@ final class ExerciceRepositoryTests: XCTestCase {
     }
     
     func test_AddExercise() {
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         
         let entities = persistenceController.container.managedObjectModel.entities
             print("Entities: \(entities.map { $0.name ?? "Unnamed" })")
@@ -221,7 +221,7 @@ final class ExerciceRepositoryTests: XCTestCase {
     }
     
     func test_DeleteAllExercise() {
-        let persistenceController = MockPersistenceController.shared
+        let persistenceController = PersistenceController.init(inMemory: true)
         
         let entities = persistenceController.container.managedObjectModel.entities
             print("Entities: \(entities.map { $0.name ?? "Unnamed" })")

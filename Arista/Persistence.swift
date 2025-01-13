@@ -9,12 +9,16 @@ import CoreData
 
 class PersistenceController {
     
-    static let shared = try? PersistenceController()
+    static var shared = PersistenceController()
+    static func resetShared(inMemory: Bool = false) {
+        shared = PersistenceController(inMemory: inMemory)
+    }
     let container: NSPersistentContainer
+   
 
     static var preview: PersistenceController = {
         do {
-            let result = try PersistenceController(inMemory: true)
+            let result = PersistenceController(inMemory: true)
             let viewContext = result.container.viewContext
         
             try viewContext.save()
@@ -29,36 +33,14 @@ class PersistenceController {
     }()
 
     
-    init(inMemory: Bool = false) throws {
-//        container = NSPersistentContainer(name: "Arista")
-//        
-//        if (inMemory) {
-//            container.persistentStoreDescriptions.first?.type = NSInMemoryStoreType
-//        }
-//        
-//        
-//        var loadError: Error?
-//        container.loadPersistentStores { (storeDescription, error) in
-//            if let error = error as NSError? {
-//                loadError = error
-//            }
-//        }
-//        
-//        if let error = loadError {
-//            throw error
-//        }
-//        
-//        container.viewContext.automaticallyMergesChangesFromParent = true
-//        
-//        if (!inMemory) {
-//            try DefaultData(viewContext: container.viewContext).apply()
-//        }
+    init(inMemory: Bool = false) {
         
-        let bundle = Bundle(for: type(of: self))
-        guard let modelURL = bundle.url(forResource: "Arista", withExtension: "momd"),
-              let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
+        guard let modelURL = Bundle.main.url(forResource: "Arista", withExtension: "momd"),
+              let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: PersistenceController.self)]) else {
             fatalError("Failed to load Core Data model")
         }
+        
+        
 
         container = NSPersistentContainer(name: "Arista", managedObjectModel: managedObjectModel)
         if (inMemory) {
@@ -71,5 +53,9 @@ class PersistenceController {
         }
 
         container.viewContext.automaticallyMergesChangesFromParent = true
+        
+        if (!inMemory) {
+            try! DefaultData(viewContext: container.viewContext).apply()
+        }
     }
 }

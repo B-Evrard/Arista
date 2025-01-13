@@ -4,7 +4,7 @@ import CoreData
 
 import Combine
 
-@testable import Arista
+
 
 final class ExerciseListViewModelTests: XCTestCase {
     
@@ -12,9 +12,8 @@ final class ExerciseListViewModelTests: XCTestCase {
     
     var cancellables = Set<AnyCancellable>()
     
+    
     override func setUpWithError() throws {
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         
     }
     
@@ -27,8 +26,8 @@ final class ExerciseListViewModelTests: XCTestCase {
     func test_WhenNoExerciseIsInDatabase_FetchExercise_ReturnEmptyList() {
         
         // Clean manually all data
-        
-        let persistenceController = MockPersistenceController.shared
+        PersistenceController.resetShared(inMemory: true)
+        let persistenceController = PersistenceController.shared
         
         emptyEntities(context: persistenceController.container.viewContext)
         
@@ -62,7 +61,8 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         // Clean manually all data
         
-        let persistenceController = MockPersistenceController.shared
+        PersistenceController.resetShared(inMemory: true)
+        let persistenceController = PersistenceController.shared
         
         emptyEntities(context: persistenceController.container.viewContext)
         
@@ -109,7 +109,8 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         // Clean manually all data
         
-        let persistenceController = MockPersistenceController.shared
+        PersistenceController.resetShared(inMemory: true)
+        let persistenceController = PersistenceController.shared
         
         emptyEntities(context: persistenceController.container.viewContext)
         
