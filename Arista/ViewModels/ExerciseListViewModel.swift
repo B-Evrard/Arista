@@ -45,7 +45,7 @@ class ExerciseListViewModel: ObservableObject {
         }
     }
     
-    func toModel(_ exercise: Exercise) -> ExerciseModel {
+    private func toModel(_ exercise: Exercise) -> ExerciseModel {
         return ExerciseModel(
             type: ExerciseType(rawValue: exercise.type ?? "") ,
             intensity: Double(exercise.intensity),

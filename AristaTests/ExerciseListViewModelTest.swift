@@ -202,6 +202,94 @@ final class ExerciseListViewModelTests: XCTestCase {
         
     }
     
+    func test_refresh() {
+        
+        PersistenceController.resetShared(inMemory: true)
+        let persistenceController = PersistenceController.shared
+        
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let date1 = Date()
+        let date2 = Date(timeIntervalSinceNow: -(60*60*24))
+        let date3 = Date(timeIntervalSinceNow: -(60*60*24*2))
+ 
+        addExercice(context: persistenceController.container.viewContext, category: "football", intensity: 5,
+                    startDate: date1, endDate: addRandomTime(to: date1), userFirstName: "Erica", userLastName: "Marcusi", password: "motdepasseLong")
+       
+        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext)
+        
+        let expectation = XCTestExpectation(description: "fetch one exercise")
+        
+        viewModel.$exercises
+            .sink { exercises in
+                XCTAssert(exercises.count == 1)
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        cancellables.removeAll()
+        
+        var cancellables2 = Set<AnyCancellable>()
+        self.addExercice(context: persistenceController.container.viewContext, category: "running", intensity: 1,
+                         startDate: date3, endDate: self.addRandomTime(to: date3), userFirstName: "Erice",userLastName: "Marceau",password: "motdepasseLong")
+        
+        self.addExercice(context: persistenceController.container.viewContext, category: "running", intensity: 1,
+                         startDate: date2, endDate: self.addRandomTime(to: date2), userFirstName: "Erice",userLastName: "Marceau",password: "motdepasseLong")
+        
+        viewModel.refreshExercises()
+        
+        let expectation2 = XCTestExpectation(description: "fetch all exercise")
+        viewModel.$exercises
+        
+            .sink { exercises in
+                
+                XCTAssert(exercises.count == 3)
+                
+                expectation2.fulfill()
+                
+            }
+            .store(in: &cancellables2)
+    }
+    
+    func test_delete() {
+        
+        PersistenceController.resetShared(inMemory: true)
+        let persistenceController = PersistenceController.shared
+        
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let date1 = Date()
+        
+        addExercice(context: persistenceController.container.viewContext, category: "football", intensity: 5,
+                    startDate: date1, endDate: addRandomTime(to: date1), userFirstName: "Erica", userLastName: "Marcusi", password: "motdepasseLong")
+       
+        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext)
+        
+        let expectation = XCTestExpectation(description: "fetch one exercise")
+        
+        viewModel.$exercises
+            .sink { exercises in
+                XCTAssert(exercises.count == 1)
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        cancellables.removeAll()
+        
+        var cancellables2 = Set<AnyCancellable>()
+        
+        viewModel.deleteExercise()
+        
+        let expectation2 = XCTestExpectation(description: "fetch no exercise")
+        viewModel.$exercises
+        
+            .sink { exercises in
+                
+                XCTAssert(exercises.isEmpty)
+                
+                expectation2.fulfill()
+                
+            }
+            .store(in: &cancellables2)
+    }
     
     
     private func emptyEntities(context: NSManagedObjectContext) {
