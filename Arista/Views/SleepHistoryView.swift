@@ -69,5 +69,6 @@ struct QualityIndicator: View {
 }
 
 #Preview {
-    SleepHistoryView(viewModel: SleepHistoryViewModel())
+    SleepHistoryView(viewModel: SleepHistoryViewModel(context: PersistenceController.preview.container.viewContext))
 }
+

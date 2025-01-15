@@ -30,9 +30,10 @@ struct UserDataView: View {
             Text("Une erreur est survenue")
         }
         .edgesIgnoringSafeArea(.all)
+        .backgroundImage("Fond")
     }
 }
 
 #Preview {
-    UserDataView(viewModel: UserDataViewModel())
+    //UserDataView(viewModel: UserDataViewModel())
 }

@@ -174,7 +174,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext)
         
-        let expectation = XCTestExpectation(description: "fetch empty list of exercise")
+        let expectation = XCTestExpectation(description: "fetch list of exercise")
         
         
         

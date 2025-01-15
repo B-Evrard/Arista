@@ -19,7 +19,7 @@ struct AristaApp: App {
         WindowGroup {
             
             TabView {
-                UserDataView(viewModel: UserDataViewModel())
+                UserDataView(viewModel: UserDataViewModel(context: persistenceController.container.viewContext))
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .tabItem {
                         Label("Utilisateur", systemImage: "person")
@@ -31,7 +31,7 @@ struct AristaApp: App {
                         Label("Exercices", systemImage: "flame")
                     }
                 
-                SleepHistoryView(viewModel: SleepHistoryViewModel())
+                SleepHistoryView(viewModel: SleepHistoryViewModel(context: persistenceController.container.viewContext))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .tabItem {
                         Label("Sommeil", systemImage: "moon")

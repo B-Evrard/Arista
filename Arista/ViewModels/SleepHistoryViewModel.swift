@@ -6,12 +6,16 @@
 //
 
 import Foundation
+import CoreData
 
 class SleepHistoryViewModel: ObservableObject {
     @Published var sleepSessions : [SleepModel] = []
     @Published var showError = false
     
-    init() {
+    var viewContext: NSManagedObjectContext
+    
+    init(context: NSManagedObjectContext){
+        self.viewContext = context
         fetchSleepSessions()
     }
     
@@ -26,8 +30,7 @@ class SleepHistoryViewModel: ObservableObject {
         }
     }
     
-    func
-    toModel(_ sleep: Sleep) -> SleepModel {
+    func toModel(_ sleep: Sleep) -> SleepModel {
         return SleepModel(
             quality: Int(sleep.quality),
             startDate: sleep.startDate ?? Date(),
