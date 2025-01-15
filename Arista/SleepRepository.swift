@@ -21,6 +21,14 @@ struct SleepRepository {
         return try viewContext.fetch (request).map { $0 }
     }
     
+    func addSleep(model: SleepModel) throws {
+        let sleep = Sleep(context: viewContext)
+        sleep.startDate = model.startDate
+        sleep.endDate = model.endDate
+        sleep.quality = Int16(model.quality)
+        try viewContext.save()
+    }
+    
     
     
 }

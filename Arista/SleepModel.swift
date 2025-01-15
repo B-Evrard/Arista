@@ -11,7 +11,7 @@ struct SleepModel: Identifiable {
     
     var id: UUID = UUID()
     
-    var quality: Int
+    var quality: Double
     var startDate: Date
     var endDate: Date
     

@@ -32,7 +32,7 @@ class SleepHistoryViewModel: ObservableObject {
     
     func toModel(_ sleep: Sleep) -> SleepModel {
         return SleepModel(
-            quality: Int(sleep.quality),
+            quality: Double(sleep.quality),
             startDate: sleep.startDate ?? Date(),
             endDate: sleep.endDate ?? Date()
         )

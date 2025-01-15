@@ -14,7 +14,7 @@ struct SleepHistoryView: View {
         NavigationView {
             List(viewModel.sleepSessions) { session in
                 HStack {
-                    QualityIndicator(quality: session.quality)
+                    QualityIndicator(quality: Int(session.quality))
                         .padding()
                     VStack(alignment: .leading) {
                         Text("Début : \(session.startDateFormatted)")
