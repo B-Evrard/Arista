@@ -38,7 +38,9 @@ class SleepHistoryViewModel: ObservableObject {
         )
     }
     
-    
+    func refreshSleepSessions() {
+        fetchSleepSessions()
+    }
 }
 
 

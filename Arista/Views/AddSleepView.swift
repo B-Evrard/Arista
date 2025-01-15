@@ -74,7 +74,7 @@ struct AddSleepView: View {
                 }.buttonStyle(.borderedProminent)
                     
             }
-            .navigationTitle("Nouvel Exercice")
+            .navigationTitle("Sommeil")
             
             
         }

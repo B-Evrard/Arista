@@ -12,7 +12,7 @@ struct ExerciseListView: View {
     @State private var showingAddExerciseView = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(viewModel.exercises) { exercise  in
                 HStack {
                     Image(systemName: exercise.type.icon)
@@ -28,7 +28,7 @@ struct ExerciseListView: View {
                     }
                     Spacer()
                     Circle()
-                        .fill(colorFromString(exercise.intensityIndicator))
+                        .fill(exercise.intensityIndicator)
                         .frame(width: 10, height: 10)
                     
                 }
@@ -66,22 +66,10 @@ struct ExerciseListView: View {
         
         
         
+        
     }
     
-    func colorFromString(_ colorName: String) -> Color {
-        switch colorName {
-        case "green":
-            return .green
-        case "yellow":
-            return .yellow
-        case "red":
-            return .red
-        case "gray":
-            return .gray
-        default:
-            return .black
-        }
-    }
+    
 }
 
 

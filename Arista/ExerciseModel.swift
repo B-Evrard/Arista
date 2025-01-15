@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUICore
 
 struct ExerciseModel: Identifiable {
     
@@ -21,16 +22,16 @@ struct ExerciseModel: Identifiable {
     }
     
     
-    var intensityIndicator: String {
+    var intensityIndicator: Color {
         switch intensity {
         case 0...6:
-            return "green"
+            return .green
         case 7...15:
-            return "yellow"
+            return .yellow
         case 16...20:
-            return "red"
+            return .red
         default:
-            return "gray"
+            return .gray
         }
     }
     

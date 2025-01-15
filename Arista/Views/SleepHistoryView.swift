@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
-
+    @State private var showingAddSleepView = false
+    
     var body: some View {
         NavigationView {
             List(viewModel.sleepSessions) { session in
@@ -21,8 +22,11 @@ struct SleepHistoryView: View {
                         
                         Text("Fin : \(session.endDateFormatted)")
                     }
-                }
+                } .listRowBackground(Color.white.opacity(0.5))
             }
+           
+            .scrollContentBackground(.hidden)
+            .background(Image("Fond"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -31,6 +35,17 @@ struct SleepHistoryView: View {
                         .foregroundColor(.blue)
                 }
             }
+            .navigationBarItems(trailing: Button(action: {
+                showingAddSleepView = true
+            }) {
+                Image(systemName: "plus")
+            })
+            
+        }
+        .sheet(isPresented: $showingAddSleepView, onDismiss: {
+            viewModel.refreshSleepSessions()})
+        {
+            AddSleepView(viewModel: AddSleepViewModel())
         }
         .alert("Erreur", isPresented: $viewModel.showError) {
             Button("OK", role: .cancel) {}
