@@ -23,12 +23,12 @@ struct ExerciseRepository {
     }
    
    
-    func addExercise(model: ExerciseModel) throws {
+    func addExercise(type: String, intensity: Int16, startDate: Date, endDate: Date) throws {
         let exercise = Exercise(context: viewContext)
-        exercise.type = model.type.rawValue
-        exercise.intensity = Int16(model.intensity)
-        exercise.startDate = model.startDate
-        exercise.endDate = model.endDate
+        exercise.type = type
+        exercise.intensity = intensity
+        exercise.startDate = startDate
+        exercise.endDate = endDate
         try viewContext.save()
     }
     

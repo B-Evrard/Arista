@@ -1,5 +1,5 @@
 //
-//  ExerciceRepositoryTests.swift
+//  ExerciseRepositoryTests.swift
 //  AristaTests
 //
 //  Created by Bruno Evrard on 29/12/2024.
@@ -10,7 +10,7 @@ import CoreData
 
 
 
-final class ExerciceRepositoryTests: XCTestCase {
+final class ExerciseRepositoryTests: XCTestCase {
     
     private func emptyEntities(context: NSManagedObjectContext) {
         
@@ -18,9 +18,9 @@ final class ExerciceRepositoryTests: XCTestCase {
         
         let objects = try! context.fetch(fetchRequest)
         
-        for exercice in objects {
+        for exercise in objects {
             
-            context.delete(exercice)
+            context.delete(exercise)
             
         }
         
@@ -30,7 +30,7 @@ final class ExerciceRepositoryTests: XCTestCase {
         
     }
     
-    private func addExercice(context: NSManagedObjectContext, category: String, intensity: Int, startDate: Date, endDate: Date,  userFirstName: String, userLastName: String, password: String) {
+    private func addExercise(context: NSManagedObjectContext, category: String, intensity: Int, startDate: Date, endDate: Date,  userFirstName: String, userLastName: String, password: String) {
         
         let newUser = User(context: context)
         
@@ -85,7 +85,7 @@ final class ExerciceRepositoryTests: XCTestCase {
         
         let endDate = addRandomTime(to: date)
         
-        addExercice(context: persistenceController.container.viewContext, category: "Football", intensity: 5, startDate: date, endDate: endDate, userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
+        addExercise(context: persistenceController.container.viewContext, category: "Football", intensity: 5, startDate: date, endDate: endDate, userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
 
         let data = ExerciseRepository(viewContext: persistenceController.container.viewContext)
         
@@ -120,7 +120,7 @@ final class ExerciceRepositoryTests: XCTestCase {
         
         
         
-        addExercice(context: persistenceController.container.viewContext,
+        addExercise(context: persistenceController.container.viewContext,
                     
                     category: "Football",
                     
@@ -136,7 +136,7 @@ final class ExerciceRepositoryTests: XCTestCase {
         
                     password: "motdepasseLong")
         
-        addExercice(context: persistenceController.container.viewContext,
+        addExercise(context: persistenceController.container.viewContext,
                     
                     category: "Running",
                     
@@ -152,7 +152,7 @@ final class ExerciceRepositoryTests: XCTestCase {
                     
                     password: "motdepasseLong")
         
-        addExercice(context: persistenceController.container.viewContext,
+        addExercise(context: persistenceController.container.viewContext,
                     
                     category: "Fitness",
                     
@@ -197,10 +197,8 @@ final class ExerciceRepositoryTests: XCTestCase {
         let startDate = Date()
         let endDate = addRandomTime(to: startDate)
         
-        let exercideModel = ExerciseModel(type: ExerciseType.cyclisme, intensity: 10.0, startDate: startDate, endDate: endDate)
-        
         do {
-            try data.addExercise(model: exercideModel)
+            try data.addExercise(type: ExerciseType.cyclisme.rawValue, intensity: Int16(10.0), startDate: startDate, endDate: endDate)
             
             let exercises = try! data.getExercise()
             
@@ -231,10 +229,8 @@ final class ExerciceRepositoryTests: XCTestCase {
         let startDate = Date()
         let endDate = addRandomTime(to: startDate)
         
-        let exercideModel = ExerciseModel(type: ExerciseType.cyclisme, intensity: 10.0, startDate: startDate, endDate: endDate)
-        
         do {
-            try data.addExercise(model: exercideModel)
+            try data.addExercise(type: ExerciseType.cyclisme.rawValue, intensity: Int16(10.0), startDate: startDate, endDate: endDate)
             
             var exercises = try! data.getExercise()
             

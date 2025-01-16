@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import CoreData
 
 class AddExerciseViewModel: ObservableObject {
     
     @Published var exercise: ExerciseModel
-    
     @Published var showAlert: Bool = false
     @Published var messageAlert: String = ""
     
@@ -25,7 +25,7 @@ class AddExerciseViewModel: ObservableObject {
            
             if (exercise.type == .unknown)
             {
-                self.messageAlert = "Selectionner la catégorie"
+                self.messageAlert = "Selectionnez la catégorie"
                 self.showAlert = true
                 return false
             }
@@ -36,7 +36,7 @@ class AddExerciseViewModel: ObservableObject {
                 return false
             }
             
-            try ExerciseRepository().addExercise(model: exercise)
+            try ExerciseRepository().addExercise(type: exercise.type.rawValue, intensity: Int16(exercise.intensity), startDate: exercise.startDate, endDate: exercise.endDate)
             return true
         } catch  {
             self.showAlert = true

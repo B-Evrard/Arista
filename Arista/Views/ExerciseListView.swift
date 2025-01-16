@@ -31,8 +31,10 @@ struct ExerciseListView: View {
                         .fill(exercise.intensityIndicator)
                         .frame(width: 10, height: 10)
                     
-                }
+                }.listRowBackground(Color.white.opacity(0.5))
             }
+            .scrollContentBackground(.hidden)
+            .background(Image("Fond"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
