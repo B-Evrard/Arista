@@ -25,6 +25,7 @@ struct AddSleepView: View {
                         .datePickerStyle(DefaultDatePickerStyle())
                         .labelsHidden()
                     }
+                    .listRowBackground(Color.clear)
                     
                     HStack {
                         Text("Fin")
@@ -36,6 +37,7 @@ struct AddSleepView: View {
                         .datePickerStyle(DefaultDatePickerStyle())
                         .labelsHidden()
                     }
+                    .listRowBackground(Color.clear)
                     
                     VStack {
                         Text("Qualité")
@@ -46,6 +48,7 @@ struct AddSleepView: View {
                                 maximumValueLabel: {Text("100")}
                         Text(String(format: "%.0f", viewModel.sleepModel.quality))
                     }
+                    .listRowBackground(Color.clear)
                     
                     if viewModel.showAlert {
                         VStack {
@@ -60,12 +63,16 @@ struct AddSleepView: View {
                                     .frame(maxWidth: .infinity, alignment: .center)
                                 Spacer()
                         }
+                        .listRowBackground(Color.clear)
                         .transition(.move(edge: .top))
                         .zIndex(1)
                     }
                     
                     
-                }.formStyle(.grouped)
+                }
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
+                
                 Spacer()
                 Button("Ajouter") {
                     if viewModel.addSleep() {
@@ -74,6 +81,13 @@ struct AddSleepView: View {
                 }.buttonStyle(.borderedProminent)
                     
             }
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.fondDe.opacity(0.6), Color.fondA.opacity(0.6)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
             .navigationTitle("Sommeil")
             
             

@@ -22,6 +22,7 @@
 		53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */; };
 		53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */; };
 		FE1C1A8D2D3937CD005C9FBB /* AddExerciseViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1C1A8C2D3937CD005C9FBB /* AddExerciseViewModelTest.swift */; };
+		FE1C1A8F2D3A4974005C9FBB /* AddSleepViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1C1A8E2D3A4974005C9FBB /* AddSleepViewModelTest.swift */; };
 		FE3F1FE42D300A8F00D6B147 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587392B235E9000E4EF99 /* Persistence.swift */; };
 		FE3F1FE62D31157D00D6B147 /* SleepRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3F1FE52D31157D00D6B147 /* SleepRepositoryTest.swift */; };
 		FE46F91A2D2191E200567ECB /* ExerciseRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE46F9192D2191E200567ECB /* ExerciseRepositoryTests.swift */; };
@@ -83,6 +84,7 @@
 		53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModel.swift; sourceTree = "<group>"; };
 		53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModel.swift; sourceTree = "<group>"; };
 		FE1C1A8C2D3937CD005C9FBB /* AddExerciseViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModelTest.swift; sourceTree = "<group>"; };
+		FE1C1A8E2D3A4974005C9FBB /* AddSleepViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepViewModelTest.swift; sourceTree = "<group>"; };
 		FE3F1FE52D31157D00D6B147 /* SleepRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepositoryTest.swift; sourceTree = "<group>"; };
 		FE46F9192D2191E200567ECB /* ExerciseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepositoryTests.swift; sourceTree = "<group>"; };
 		FEA239EB2D312537009530F1 /* UserRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTest.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		53E587452B235E9000E4EF99 /* AristaTests */ = {
 			isa = PBXGroup;
 			children = (
+				FE1C1A8E2D3A4974005C9FBB /* AddSleepViewModelTest.swift */,
 				53E587462B235E9000E4EF99 /* AristaTests.swift */,
 				FE46F9192D2191E200567ECB /* ExerciseRepositoryTests.swift */,
 				FE3F1FE52D31157D00D6B147 /* SleepRepositoryTest.swift */,
@@ -359,6 +362,7 @@
 				FE3F1FE62D31157D00D6B147 /* SleepRepositoryTest.swift in Sources */,
 				FEF6D9A22D315E9A000F5182 /* SleepHistoryViewModel.swift in Sources */,
 				FEF6D99E2D315D77000F5182 /* ExerciseType.swift in Sources */,
+				FE1C1A8F2D3A4974005C9FBB /* AddSleepViewModelTest.swift in Sources */,
 				FE1C1A8D2D3937CD005C9FBB /* AddExerciseViewModelTest.swift in Sources */,
 				FE3F1FE42D300A8F00D6B147 /* Persistence.swift in Sources */,
 				FEF6D99F2D315E56000F5182 /* SleepModel.swift in Sources */,

@@ -48,6 +48,35 @@ final class SleepHistoryViewModelTest: XCTestCase {
         
         wait(for: [expectation], timeout: 10)
     }
+    
+    func test_refresh() {
+        
+        PersistenceController.resetShared(inMemory: true)
+        let persistenceController = PersistenceController.shared
+        
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let date1 = Date()
+        let date2 = Date(timeIntervalSinceNow: -(60*60*24))
+        let date3 = Date(timeIntervalSinceNow: -(60*60*24*2))
+        
+        addSleep(context: persistenceController.container.viewContext, quality: 10,
+                 startDate: date1, endDate: addRandomTime(to: date1), userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
+
+        addSleep(context: persistenceController.container.viewContext, quality: 10,
+                 startDate: date3, endDate: addRandomTime(to: date3), userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
+
+
+        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext)
+        XCTAssert(viewModel.sleepSessions.count == 2)
+        
+        addSleep(context: persistenceController.container.viewContext, quality: 10,
+                 startDate: date2, endDate: addRandomTime(to: date2), userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
+        
+        viewModel.refreshSleepSessions()
+        XCTAssert(viewModel.sleepSessions.count == 3)
+        
+    }
 
     
     private func emptyEntities(context: NSManagedObjectContext) {

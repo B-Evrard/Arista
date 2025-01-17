@@ -35,6 +35,7 @@ struct AddExerciseView: View {
                         Text(viewModel.exercise.type == .unknown ? "Sélectionner une catégorie" : viewModel.exercise.type.rawValue.capitalized)
                             .foregroundColor(viewModel.exercise.type == .unknown ? Color.gray : Color.blue)
                     }
+                    .listRowBackground(Color.clear)
                     
                     HStack {
                         Text("Début")
@@ -46,6 +47,7 @@ struct AddExerciseView: View {
                         .datePickerStyle(DefaultDatePickerStyle())
                         .labelsHidden()
                     }
+                    .listRowBackground(Color.clear)
                     
                     HStack {
                         Text("Fin")
@@ -57,6 +59,7 @@ struct AddExerciseView: View {
                         .datePickerStyle(DefaultDatePickerStyle())
                         .labelsHidden()
                     }
+                    .listRowBackground(Color.clear)
                     
                     VStack {
                         Text("Intensité")
@@ -67,6 +70,7 @@ struct AddExerciseView: View {
                                 maximumValueLabel: {Text("20")}
                         Text(String(format: "%.0f", viewModel.exercise.intensity))
                     }
+                    .listRowBackground(Color.clear)
                     
                     if viewModel.showAlert {
                         VStack {
@@ -81,12 +85,14 @@ struct AddExerciseView: View {
                                     .frame(maxWidth: .infinity, alignment: .center)
                                 Spacer()
                         }
+                        .listRowBackground(Color.clear)
                         .transition(.move(edge: .top))
                         .zIndex(1)
                     }
                     
-                    
-                }.formStyle(.grouped)
+                }
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
                 Spacer()
                 Button("Ajouter l'exercice") {
                     if viewModel.addExercise() {
@@ -95,6 +101,13 @@ struct AddExerciseView: View {
                 }.buttonStyle(.borderedProminent)
                     
             }
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.fondDe.opacity(0.6), Color.fondA.opacity(0.6)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
             .navigationTitle("Nouvel Exercice")
             
             
