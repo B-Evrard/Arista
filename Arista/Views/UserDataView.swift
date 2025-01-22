@@ -35,5 +35,5 @@ struct UserDataView: View {
 }
 
 #Preview {
-    //UserDataView(viewModel: UserDataViewModel())
+    UserDataView(viewModel: UserDataViewModel())
 }

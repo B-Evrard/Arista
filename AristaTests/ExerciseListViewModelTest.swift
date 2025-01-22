@@ -31,7 +31,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         emptyEntities(context: persistenceController.container.viewContext)
         
-        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext)
+        let viewModel = ExerciseListViewModel()
         
         let expectation = XCTestExpectation(description: "fetch empty list of exercise")
         
@@ -71,7 +71,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         addExercice(context: persistenceController.container.viewContext, category: "football", intensity: 5, startDate: date, endDate: endDate, userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
 
-        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext)
+        let viewModel = ExerciseListViewModel()
         
         let expectation = XCTestExpectation(description: "fetch empty list of exercise")
         
@@ -172,7 +172,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         
         
-        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext)
+        let viewModel = ExerciseListViewModel()
         
         let expectation = XCTestExpectation(description: "fetch list of exercise")
         
@@ -216,7 +216,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         addExercice(context: persistenceController.container.viewContext, category: "football", intensity: 5,
                     startDate: date1, endDate: addRandomTime(to: date1), userFirstName: "Erica", userLastName: "Marcusi", password: "motdepasseLong")
        
-        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext)
+        let viewModel = ExerciseListViewModel()
         
         let expectation = XCTestExpectation(description: "fetch one exercise")
         
@@ -262,7 +262,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         addExercice(context: persistenceController.container.viewContext, category: "football", intensity: 5,
                     startDate: date1, endDate: addRandomTime(to: date1), userFirstName: "Erica", userLastName: "Marcusi", password: "motdepasseLong")
        
-        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext)
+        let viewModel = ExerciseListViewModel()
         
         let expectation = XCTestExpectation(description: "fetch one exercise")
         

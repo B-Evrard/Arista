@@ -21,7 +21,7 @@ final class UserDataViewModelTest: XCTestCase {
         
         addUser(context: persistenceController.container.viewContext, userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
         
-        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext)
+        let viewModel = UserDataViewModel()
         let expectation = XCTestExpectation(description: "fetch list of sleep")
         
         let fullName = "Eric Marcus"

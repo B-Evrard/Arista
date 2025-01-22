@@ -74,7 +74,7 @@ struct QualityIndicator: View {
         case 0...39:
             return .green
         case 40...69:
-            return .yellow
+            return .blue
         case 70...100:
             return .red
         default:
@@ -84,6 +84,7 @@ struct QualityIndicator: View {
 }
 
 #Preview {
-    SleepHistoryView(viewModel: SleepHistoryViewModel(context: PersistenceController.preview.container.viewContext))
+    
+    SleepHistoryView(viewModel: SleepHistoryViewModel())
 }
 

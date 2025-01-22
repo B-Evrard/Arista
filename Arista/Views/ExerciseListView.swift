@@ -48,12 +48,7 @@ struct ExerciseListView: View {
             }) {
                 Image(systemName: "plus")
             })
-            .navigationBarItems(trailing: Button(action: {
-                viewModel.deleteExercise()
-            }) {
-                Image(systemName: "delete.left")
-                    .foregroundColor(.red)
-            })
+            
         }
         .sheet(isPresented: $showingAddExerciseView, onDismiss: {
             viewModel.refreshExercises()})
@@ -77,5 +72,5 @@ struct ExerciseListView: View {
 
 
 #Preview {
-    ExerciseListView(viewModel: ExerciseListViewModel(context: PersistenceController.preview.container.viewContext))
+    ExerciseListView(viewModel: ExerciseListViewModel())
 }

@@ -19,19 +19,19 @@ struct AristaApp: App {
         WindowGroup {
             
             TabView {
-                UserDataView(viewModel: UserDataViewModel(context: persistenceController.container.viewContext))
+                UserDataView(viewModel: UserDataViewModel())
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .tabItem {
                         Label("Utilisateur", systemImage: "person")
                     }
                 
-                ExerciseListView(viewModel: ExerciseListViewModel(context: persistenceController.container.viewContext))
+                ExerciseListView(viewModel: ExerciseListViewModel())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .tabItem {
                         Label("Exercices", systemImage: "flame")
                     }
                 
-                SleepHistoryView(viewModel: SleepHistoryViewModel(context: persistenceController.container.viewContext))
+                SleepHistoryView(viewModel: SleepHistoryViewModel())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .tabItem {
                         Label("Sommeil", systemImage: "moon")

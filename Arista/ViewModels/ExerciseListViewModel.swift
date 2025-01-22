@@ -6,16 +6,12 @@
 //
 
 import Foundation
-import CoreData
 
 class ExerciseListViewModel: ObservableObject {
     @Published var exercises = [ExerciseModel]()
     @Published var showError = false
     
-    var viewContext: NSManagedObjectContext
-
-    init(context: NSManagedObjectContext){
-        self.viewContext = context
+   init(){
         fetchExercises()
     }
 

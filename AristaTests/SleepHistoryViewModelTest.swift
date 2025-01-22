@@ -34,7 +34,7 @@ final class SleepHistoryViewModelTest: XCTestCase {
                  startDate: date2, endDate: addRandomTime(to: date2), userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
         
         
-        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext)
+        let viewModel = SleepHistoryViewModel()
         let expectation = XCTestExpectation(description: "fetch list of sleep")
  
         viewModel.$sleepSessions
@@ -67,7 +67,7 @@ final class SleepHistoryViewModelTest: XCTestCase {
                  startDate: date3, endDate: addRandomTime(to: date3), userFirstName: "Eric", userLastName: "Marcus", password: "motdepasseLong")
 
 
-        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext)
+        let viewModel = SleepHistoryViewModel()
         XCTAssert(viewModel.sleepSessions.count == 2)
         
         addSleep(context: persistenceController.container.viewContext, quality: 10,

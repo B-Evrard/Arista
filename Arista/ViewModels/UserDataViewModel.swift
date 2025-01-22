@@ -6,22 +6,16 @@
 //
 
 import Foundation
-import CoreData
 
 class UserDataViewModel: ObservableObject {
     @Published var userModel: UserModel?
     @Published var showError = false
     
-    var viewContext: NSManagedObjectContext
-
-    
-    
     var fullName: String {
        return "\(userModel?.firstName ?? "") \(userModel?.lastName ?? "")"
     }
 
-    init(context: NSManagedObjectContext){
-        viewContext = context
+    init(){
         fetchUserData()
     }
 
