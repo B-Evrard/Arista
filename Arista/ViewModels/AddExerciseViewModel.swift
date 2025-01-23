@@ -14,7 +14,7 @@ class AddExerciseViewModel: ObservableObject {
     @Published var messageAlert: String = ""
     
     init() {
-        self.exercise = ExerciseModel(type: ExerciseType.unknown, intensity: 10.0, startDate: Date(), endDate: Date())
+        self.exercise = ExerciseModel(objectID: "", type: ExerciseType.unknown, intensity: 10.0, startDate: Date(), endDate: Date())
     }
     
    

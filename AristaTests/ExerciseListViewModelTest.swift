@@ -250,7 +250,7 @@ final class ExerciseListViewModelTests: XCTestCase {
             .store(in: &cancellables2)
     }
     
-    func test_delete() {
+    func test_deleteExercises() {
         
         PersistenceController.resetShared(inMemory: true)
         let persistenceController = PersistenceController.shared
@@ -276,7 +276,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         var cancellables2 = Set<AnyCancellable>()
         
-        viewModel.deleteExercise()
+        viewModel.deleteExercises()
         
         let expectation2 = XCTestExpectation(description: "fetch no exercise")
         viewModel.$exercises
@@ -289,6 +289,35 @@ final class ExerciseListViewModelTests: XCTestCase {
                 
             }
             .store(in: &cancellables2)
+    }
+    
+    func test_deleteExercise() {
+        
+        PersistenceController.resetShared(inMemory: true)
+        let persistenceController = PersistenceController.shared
+        
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let date1 = Date()
+        let date2 = Date(timeIntervalSinceNow: -(60*60*24))
+        let date3 = Date(timeIntervalSinceNow: -(60*60*24*2))
+        
+        self.addExercice(context: persistenceController.container.viewContext, category: "football", intensity: 5,
+                    startDate: date1, endDate: addRandomTime(to: date1), userFirstName: "Erica", userLastName: "Marcusi", password: "motdepasseLong")
+        
+        self.addExercice(context: persistenceController.container.viewContext, category: "running", intensity: 1,
+                         startDate: date3, endDate: self.addRandomTime(to: date3), userFirstName: "Erice",userLastName: "Marceau",password: "motdepasseLong")
+        
+        self.addExercice(context: persistenceController.container.viewContext, category: "running", intensity: 1,
+                         startDate: date2, endDate: self.addRandomTime(to: date2), userFirstName: "Erice",userLastName: "Marceau",password: "motdepasseLong")
+       
+        let viewModel = ExerciseListViewModel()
+        
+        XCTAssert(viewModel.exercises.count == 3)
+        
+        viewModel.deleteExercise(viewModel.exercises[1])
+        
+        XCTAssert(viewModel.exercises.count == 2)
     }
     
     

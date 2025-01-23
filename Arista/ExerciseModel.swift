@@ -11,6 +11,7 @@ import SwiftUICore
 struct ExerciseModel: Identifiable {
     
     var id: UUID = UUID()
+    var objectID: String
     
     var type: ExerciseType
     var intensity: Double

@@ -30,7 +30,7 @@ class ExerciseListViewModel: ObservableObject {
         fetchExercises()
     }
     
-    func deleteExercise() {
+    func deleteExercises() {
         do {
             self.showError = false
             let data = ExerciseRepository()
@@ -41,9 +41,20 @@ class ExerciseListViewModel: ObservableObject {
         }
     }
     
+    func deleteExercise(_ exercise: ExerciseModel) {
+        do {
+            try ExerciseRepository().delete(objectID : exercise.objectID)
+            refreshExercises()
+        } catch {
+            showError = true
+        }
+    }
+    
+    
     private func toModel(_ exercise: Exercise) -> ExerciseModel {
         return ExerciseModel(
-            type: ExerciseType(rawValue: exercise.type ?? "") ,
+            objectID: exercise.objectID.uriRepresentation().absoluteString,
+            type: ExerciseType(rawValue: exercise.type ?? ""),
             intensity: Double(exercise.intensity),
             startDate: exercise.startDate ?? Date(),
             endDate: exercise.endDate ?? Date()

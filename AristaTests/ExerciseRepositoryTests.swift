@@ -250,6 +250,97 @@ final class ExerciseRepositoryTests: XCTestCase {
         
     }
     
+    func test_Delete()
+    {
+        
+            
+        let persistenceController = PersistenceController.init(inMemory: true)
+        
+        // Clean manually all data
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let date1 = Date()
+        
+        let date2 = Date(timeIntervalSinceNow: -(60*60*24))
+        
+        let date3 = Date(timeIntervalSinceNow: -(60*60*24*2))
+        
+        
+        
+        addExercise(context: persistenceController.container.viewContext,
+                    
+                    category: "Football",
+                    
+                    intensity: 5,
+                    
+                    startDate: date1,
+                    
+                    endDate: addRandomTime(to: date1),
+                    
+                    userFirstName: "Erica",
+                    
+                    userLastName: "Marcusi",
+        
+                    password: "motdepasseLong")
+        
+        addExercise(context: persistenceController.container.viewContext,
+                    
+                    category: "Running",
+                    
+                    intensity: 1,
+                    
+                    startDate: date3,
+                    
+                    endDate: addRandomTime(to: date3),
+                    
+                    userFirstName: "Erice",
+                    
+                    userLastName: "Marceau",
+                    
+                    password: "motdepasseLong")
+        
+        addExercise(context: persistenceController.container.viewContext,
+                    
+                    category: "Fitness",
+                    
+                    intensity: 5,
+                    
+                    startDate: date2,
+                    
+                    endDate: addRandomTime(to: date2),
+                    
+                    userFirstName: "Frédericd",
+                    
+                    userLastName: "Marcus",
+                    
+                    password: "motdepasseLong")
+        
+        
+        
+        let data = ExerciseRepository(viewContext: persistenceController.container.viewContext)
+            
+        var exercises = try! data.getExercise()
+        
+        XCTAssert(exercises.count == 3)
+            
+        XCTAssert(exercises[0].type == "Football")
+        
+        XCTAssert(exercises[1].type == "Fitness")
+        
+        XCTAssert(exercises[2].type == "Running")
+            
+        let id = exercises[1].objectID.uriRepresentation().absoluteString
+        try! data.delete(objectID: id)
+        
+        exercises = try! data.getExercise()
+        
+        XCTAssert(exercises.count == 2)
+            
+        XCTAssert(exercises[0].type == "Football")
+        XCTAssert(exercises[1].type == "Running")
+       
+    }
+    
     private func addRandomTime(to: Date) -> Date {
         let seconds = Int.random(in: 3600...7200)
         return to.addingTimeInterval(TimeInterval(seconds))

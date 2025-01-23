@@ -45,6 +45,17 @@ struct ExerciseRepository {
         }
     }
     
+    func delete(objectID: String) throws {
+        
+        if let url = URL(string: objectID),
+            let managedObjectID = viewContext.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url),
+            let exercise = try? viewContext.existingObject(with: managedObjectID) as? Exercise {
+                viewContext.delete(exercise)
+                try viewContext.save()
+        }
+        
+    }
+    
     
 }
 
